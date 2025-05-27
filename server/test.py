@@ -15,6 +15,9 @@ user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
 # }
 # result = user_db.create_database_page(properties)
 # print(result)
-
+# import json
 # user_list = user_db.get_pages_id()
+# with open("test.json", "w", encoding="utf-8") as f:
+#     json.dump(user_db.get_page_properties(user_list[1]).result, f, ensure_ascii=False, indent=4)
+
 # print(user_db.get_page_properties(user_list[1]))
