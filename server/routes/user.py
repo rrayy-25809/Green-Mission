@@ -13,8 +13,10 @@ user_db = NotionDatabase(os.getenv("USER_DB_ID"))
 @bp.route("/mypage")
 def mypage():
     if "page_id" not in session:
-        return redirect("/login")
-    render_template("mypage.html")
+        return "먼저 로그인 해주세요.", 403
+    page_id = session["page_id"]
+    user_info = user_db.get_page_properties(page_id)
+    return render_template("mypage.html",user_info=user_info)
 
 @bp.route("/delete_account")
 def delete_account():
@@ -26,3 +28,5 @@ def delete_account():
     current_app.logger.info(f"사용자, {page_id} 가 계정을 삭제했습니다.")
     
     session.pop("page_id", None)
+
+    return redirect("/login")
