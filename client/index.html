@@ -6,13 +6,14 @@
         <link rel="stylesheet" href="src/style.css">
     </head>
     <body>
-        <div class="main_container">
+        <nav class="navbar" data-bs-theme="light">
+            <a type="button" class="btn btn-secondary" href="/mypage">마이 페이지</a>
+            <a type="button" class="btn btn-secondary" href="/login">로그인</a>
+        </nav>
+        <div class="main_container" data-bs-theme="dark">
             <h1 id="title"><span>Green</span> <span>Mission</span></h1>
-            <p>오늘은 0월 00일 00의 날입니다!</p>
-            <div class="input-group mb-3">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon1">검색</button>
-                <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-            </div>
+            <p id="todayis">오늘은 5월 28일 세계 수달의 날입니다!</p>
+            <!-- 차후 검색 창 구현 -->
         </div>
         <script type="module" src="src/main.ts"></script>
     </body>
