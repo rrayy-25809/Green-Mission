@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, render_template
 from server.routes.auth import bp as auth_bp
 from server.routes.user import bp as user_bp
 
