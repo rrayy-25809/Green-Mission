@@ -6,7 +6,8 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #343434; /* 나중에 전체 페이지 컬러로 올리기 */
+    background: #50586C;
+    padding: 0;
 
     .input-group {
         margin-top: 10px;
@@ -14,16 +15,22 @@
     }
 
     #todayis {
-        font-size: 25px;
-        color: white;
+        font-size: 30px;
+        color: #fff;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 80px;
+        text-shadow: 2px 2px 8px #222;
     }
 
     #title{
         font-family: 'Italianno';
         font-style: normal;
-        font-size: 90px;
+        font-size: 120px;
         /* identical to box height */
         letter-spacing: 0.03em;
+        margin-bottom: 40px;
+        text-align: center;
 
         span:nth-child(1) {
             color: #26AD00;
