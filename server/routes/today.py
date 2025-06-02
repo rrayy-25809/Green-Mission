@@ -13,7 +13,6 @@ daylist_db = NotionDatabase(os.getenv("DAYLIST_DB_ID"))
 
 @bp.route('/today', methods=['POST'])
 def today():
-    today = datetime.now().strftime("%Y-%m-%d") + '+0900'
     for i in daylist_db.get_page_ids():
         page = daylist_db.get_page_properties(i)
         # page.result["날짜"]["date"]["start"] 값이 "2025-05-28" 같은 문자열이라고 가정
@@ -25,3 +24,6 @@ def today():
         if anniversary_date == today_date:
             current_app.logger.info("오늘의 기념일이 있습니다.")
             return page.result["기념일 명"]["title"][0]["text"]["content"]
+        
+    current_app.logger.info("오늘의 기념일이 없습니다.")
+    return "오늘의 기념일이 없습니다."

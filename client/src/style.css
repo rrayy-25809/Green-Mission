@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Italianno&family=Rhodium+Libre&display=swap');
 
+body{
+    background: #FCF6F5;
+}
+
 .main_container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: #50586C;
     padding: 0;
 
     .input-group {
@@ -15,22 +18,39 @@
     }
 
     #todayis {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
         font-size: 30px;
-        color: #fff;
-        font-weight: 900;
-        text-align: center;
-        margin-bottom: 80px;
-        text-shadow: 2px 2px 8px #222;
+        line-height: 36px;
+        letter-spacing: 0.03em;
+
+        color: #2BAE66;
+
+        text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.25);
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
     }
 
     #title{
         font-family: 'Italianno';
         font-style: normal;
+        font-weight: 400;
         font-size: 120px;
+        line-height: 150px;
         /* identical to box height */
         letter-spacing: 0.03em;
-        margin-bottom: 40px;
-        text-align: center;
+
+        text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
 
         span:nth-child(1) {
             color: #26AD00;
@@ -48,5 +68,115 @@
 
     .btn {
         margin-right: 3%;
+    }
+}
+
+.challenges{
+    h2{
+        /* 현재 사람들이 참여 중인 챌린지 */
+        width: 564px;
+        height: 48px;
+
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 48px;
+        letter-spacing: 0.03em;
+
+        color: #2BAE66;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+        margin-left: 93px;
+        margin-top: 50px;
+        margin-bottom: 12px;
+    }
+
+    .challenge-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        .challenge-item{
+            /* 챌린지 칸 */
+            display: flex;
+            align-items: flex-start;
+            padding: 25px;
+            gap: 20px;
+
+            width: 90.27%;
+            height: 300px;
+
+            background: rgba(160, 255, 128, 0.4);
+            border-radius: 5px;
+
+            /* Inside auto layout */
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+
+            margin-bottom: 12px;
+            margin-top: 12px;
+
+            img {
+                width: 19.23%;
+                height: 250px;
+                float: left;
+            }
+        }
+    }
+}
+
+.Line {
+    width: 254px;
+    height: 0px;
+
+    border: 0.7px solid rgba(0, 0, 0, 0.5);
+    transform: rotate(89.77deg);
+
+    /* Inside auto layout */
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    width: 100%;
+    margin-top: 3rem;
+    bottom: 0;
+    
+    p {
+        margin: 0.5rem 0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #ccc;
+    }
+
+    p:first-child {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 1rem;
+    }
+
+    a {
+        color: #2BAE66;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: #26AD00;
+            text-decoration: underline;
+        }
     }
 }

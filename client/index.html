@@ -11,10 +11,11 @@
             <a type="button" class="btn btn-secondary" href="/login">로그인</a>
         </nav>
         <div class="main_container" data-bs-theme="dark">
-            <h1 id="title"><span>Green</span> <span>Mission</span></h1>
-            <p id="todayis">오늘은 5월 28일 세계 수달의 날입니다!</p>
+            <h1 id="title"><span>Green</span> <span>Mission !</span></h1>
+            <p id="todayis"></p>
             <!-- 차후 검색 창 구현 -->
         </div>
+        <hr class="line"></hr>
         <div class="buttons">
             <a type="button" class="btn btn-primary" href="/challenge">챌린지 참여하기</a>
             <a type="button" class="btn btn-secondary" href="/leaderboard">리더보드</a>
@@ -22,7 +23,22 @@
         </div>
         <div class="challenges">
             <h2>현재 사람들이 진행 중인 챌린지</h2>
-            
+            <div class="challenge-list">
+                <div class="row g-0 challenge-item">
+                    <div class="col-sm-6 col-md-8">
+                        <img src="src/images/challenge.png" class="img-fluid rounded-start" alt="챌린지 이미지 1">
+                        <div class="challenge-info">
+                            <h3>(챌린지 이름)</h3>
+                            <p>챌린지 설명</p>
+                            <a href="/challenge/1" class="btn btn-primary">자세히 보기</a>
+                        </div>
+                    </div>
+                    <hr class="line"></hr>
+                    <div class="col-6 col-md-4">
+
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="footer">
             <p>© 2025 Green Mission</p>
@@ -32,5 +48,6 @@
             <p>이 사이트는 <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License v3.0</a>에 따라 라이선스가 부여됩니다.</p>
         </div>
         <script type="module" src="src/main.ts"></script>
+        <script type="module" src="src/today.ts"></script>
     </body>
 </html>
