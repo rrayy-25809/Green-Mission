@@ -11,7 +11,7 @@
             <a type="button" class="btn btn-secondary" href="/login">로그인</a>
         </nav>
         <div class="main_container" data-bs-theme="dark">
-            <h1 id="title"><span>Green</span> <span>Mission !</span></h1>
+            <h1 id="title"><span>Green</span> <span>Mission!</span></h1>
             <p id="todayis"></p>
             <!-- 차후 검색 창 구현 -->
         </div>
@@ -25,17 +25,31 @@
             <h2>현재 사람들이 진행 중인 챌린지</h2>
             <div class="challenge-list">
                 <div class="row g-0 challenge-item">
-                    <div class="col-sm-6 col-md-8">
-                        <img src="src/images/challenge.png" class="img-fluid rounded-start" alt="챌린지 이미지 1">
-                        <div class="challenge-info">
-                            <h3>(챌린지 이름)</h3>
-                            <p>챌린지 설명</p>
-                            <a href="/challenge/1" class="btn btn-primary">자세히 보기</a>
-                        </div>
+                    <div class="col-auto challenge-img-box">
+                        <img src="src/images/challenge.png" alt="챌린지 이미지 1">
                     </div>
-                    <hr class="line"></hr>
-                    <div class="col-6 col-md-4">
-
+                    <div class="col challenge-main">
+                        <div class="row challenge-header">
+                            <div class="col-auto challenge-title">
+                                <h3>(챌린지 이름)</h3>
+                            </div>
+                            <div class="col-auto challenge-user">
+                                <span>(유저 닉네임)</span>
+                            </div>
+                        </div>
+                        <div class="challenge-hashtag">#태준함</div>
+                        <div class="challenge-desc">안녕하세요 반갑습니다 함태준입니다.</div>
+                    </div>
+                    <div class="challenge-divider d-none d-md-block"></div>
+                    <div class="col-auto challenge-side">
+                        <span class="challenge-participants">현재 참여 인원 : 1명</span>
+                        <span class="challenge-period">참여기간 : 2025.06.02~2025.06.04</span>
+                        <div class="challenge-cheer">
+                            <i class="bi bi-fire"></i>
+                            <span>1</span>
+                        </div>
+                        <i class="challenge-share bi bi-share"></i>
+                        <button type="button" class="btn challenge-join-btn">참여요청</button>
                     </div>
                 </div>
             </div>

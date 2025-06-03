@@ -22,8 +22,7 @@ def today():
         today_date = datetime.now().date()
 
         if anniversary_date == today_date:
-            current_app.logger.info("오늘의 기념일이 있습니다.")
-            return page.result["기념일 명"]["title"][0]["text"]["content"]
-        
-    current_app.logger.info("오늘의 기념일이 없습니다.")
-    return "오늘의 기념일이 없습니다."
+            anniversary_date_name = page.result["기념일 명"]["title"][0]["text"]["content"]
+            return f"오늘은 {today_date.month}월 {today_date.day}일 {anniversary_date_name}입니다!"
+   
+    return "오늘의 기념일이 없습니다."  # 오늘 날짜와 일치하는 기념일이 없을 경우

@@ -19,10 +19,8 @@ class NotionDatabase:
             property_type = v['type']
             # 각 타입별로 적절히 값 추출
             if property_type == "title":
-                print("title", v)
                 value = v['title'][0]['text']['content'] if v['title'] else None
             elif property_type == "rich_text":
-                print("rich", v)
                 value = v['rich_text'][0]['text']['content'] if v['rich_text'] else None
             elif property_type == "select":
                 value = v['select']
