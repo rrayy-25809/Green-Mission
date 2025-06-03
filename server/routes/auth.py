@@ -15,15 +15,17 @@ user_db = NotionDatabase(os.getenv("USER_DB_ID"))
 @bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        email = request.form["email"]
+        email = request.form["email"] +"@"+ request.form["email-sever"]
         password = request.form["password"]
+
+        print(f"로그인 시도: 이메일={email}, 비밀번호={password}")
 
         for i in user_db.get_page_ids(): # 모든 페이지 ID를 가져와 반복
             i_data = user_db.get_page_properties(i).result  # 각 페이지의 속성 가져오기
             if i_data["이메일"]["email"] == email and i_data["비밀번호"]["rich_text"][0]["text"]["content"] == password:
                 session["page_id"] = i # 로그인 성공 시 세션에 페이지 ID 저장
-                return redirect("/main")  # 로그인 성공 시 메인 페이지로 리다이렉트
-
+                return "로그인 성공!", 200
+            
         return "로그인 실패: 이메일 또는 비밀번호가 잘못되었습니다.", 400
 
     elif "page_id" in session:

@@ -6,10 +6,7 @@
         <link rel="stylesheet" href="src/style.css">
     </head>
     <body>
-        <nav class="navbar" data-bs-theme="light">
-            <a type="button" class="btn btn-secondary" href="/mypage">마이 페이지</a>
-            <a type="button" class="btn btn-secondary" href="/login">로그인</a>
-        </nav>
+        <div id="navbar-placeholder"></div>
         <div class="main_container" data-bs-theme="dark">
             <h1 id="title"><span>Green</span> <span>Mission!</span></h1>
             <p id="todayis"></p>
@@ -22,46 +19,22 @@
             <a type="button" class="btn btn-success" href="/about">Green Mission 소개</a>
         </div>
         <div class="challenges">
-            <h2>현재 사람들이 진행 중인 챌린지</h2>
+            <h2>현재 사람들이 진행 중인 오늘의 챌린지</h2>
             <div class="challenge-list">
-                <div class="row g-0 challenge-item">
-                    <div class="col-auto challenge-img-box">
-                        <img src="src/images/challenge.png" alt="챌린지 이미지 1">
-                    </div>
-                    <div class="col challenge-main">
-                        <div class="row challenge-header">
-                            <div class="col-auto challenge-title">
-                                <h3>(챌린지 이름)</h3>
-                            </div>
-                            <div class="col-auto challenge-user">
-                                <span>(유저 닉네임)</span>
-                            </div>
-                        </div>
-                        <div class="challenge-hashtag">#태준함</div>
-                        <div class="challenge-desc">안녕하세요 반갑습니다 함태준입니다.</div>
-                    </div>
-                    <div class="challenge-divider d-none d-md-block"></div>
-                    <div class="col-auto challenge-side">
-                        <span class="challenge-participants">현재 참여 인원 : 1명</span>
-                        <span class="challenge-period">참여기간 : 2025.06.02~2025.06.04</span>
-                        <div class="challenge-cheer">
-                            <i class="bi bi-fire"></i>
-                            <span>1</span>
-                        </div>
-                        <i class="challenge-share bi bi-share"></i>
-                        <button type="button" class="btn challenge-join-btn">참여요청</button>
-                    </div>
-                </div>
+                
             </div>
         </div>
+        <hr class="line"></hr>
         <div class="footer">
             <p>© 2025 Green Mission</p>
             <p>이 사이트는 Green Mission의 공식 웹사이트입니다.</p>
-            <p>Green Mission은 인천대건고등학교 소속의 학생들이 만든 단체이며 환경 보호 챌린지 서포팅을 목표로 합니다.</p>
+            <p>Green Mission은 <a href="https://idg.icehs.kr/main.do">인천대건고등학교</a> 소속의 학생들이 만든 단체이며 환경 보호 챌린지 서포팅을 목표로 합니다.</p>
             <p>이 사이트는 오픈소스로 개발되었으며, <a href="https://github.com/rrayy-25809/Green-Mission">GitHub</a>에서 소스 코드를 확인할 수 있습니다.</p>
             <p>이 사이트는 <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License v3.0</a>에 따라 라이선스가 부여됩니다.</p>
         </div>
         <script type="module" src="src/main.ts"></script>
         <script type="module" src="src/today.ts"></script>
+        <script type="module" src="src/challenge.ts"></script>
+        <script type="module" src="src/navbar.ts"></script>
     </body>
 </html>

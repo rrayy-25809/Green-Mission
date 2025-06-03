@@ -3,10 +3,36 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <link rel="stylesheet" href="src/style.css">
     </head>
     <body>
-        
+        <div id="navbar-placeholder"></div>
+        <div class="container mt-5">
+            <h1 class="text-center mb-4">로그인</h1>
+            <div class="text-center mb-4">
+                <p>Green Mission에 로그인하여 환경 보호 챌린지에 참여하세요!</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">비밀번호</label>
+                    <input type="password" class="form-control" id="email" name="email" required>
+                    <select id="email-sever" name="email-sever" class="form-select" aria-label="Email server" required>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="hotmail.com">hotmail.com</option>
+                        <option value="yahoo.com">yahoo.com</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">로그인</button>
+            </form>
+        </div>
         <script type="module" src="src/main.ts"></script>
+        <script type="module" src="src/navbar.ts"></script>
+        <script type="module" src="src/login.ts"></script>
     </body>
 </html>

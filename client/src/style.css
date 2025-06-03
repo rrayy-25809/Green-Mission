@@ -260,7 +260,10 @@ body{
 
     .challenge-item .challenge-join-btn {
         background: #5BD1FF;
+        color: #fff;
         font-family: Inter, sans-serif;
+        font-size: 18px;
+        font-weight: 500;
         margin-top: 10px;
     }
 }
