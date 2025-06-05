@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     <p>이 사이트는 <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU General Public License v3.0</a>에 따라 라이선스가 부여됩니다.</p>`;
             
     const navbarPlaceholder = document.getElementById('navbar-placeholder') as HTMLDivElement;
-    const footerPlaceholder = document.getElementById('footer') as HTMLDivElement;
-    
-    footerPlaceholder.innerHTML = footerHtml;
     navbarPlaceholder.innerHTML = navbarHtml;
+
+    const footerPlaceholder = document.getElementsByClassName('footer')[0] as HTMLDivElement;
+    footerPlaceholder.innerHTML = footerHtml;
 });
