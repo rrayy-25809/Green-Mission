@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.5",
+    "sass": "^1.89.1",
     "typescript": "~5.7.2",
     "vite": "^6.1.0"
   },
