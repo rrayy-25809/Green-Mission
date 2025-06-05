@@ -26,3 +26,7 @@ def today():
             return f"오늘은 {today_date.month}월 {today_date.day}일 {anniversary_date_name}입니다!"
    
     return "오늘의 기념일이 없습니다."  # 오늘 날짜와 일치하는 기념일이 없을 경우
+
+@bp.route('/calendar')
+def calendar():
+    return render_template('calendar.html')

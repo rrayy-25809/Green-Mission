@@ -1,0 +1,49 @@
+.main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 543px;
+
+    .input-group {
+        margin-top: 10px;
+        width: 50%;
+    }
+
+    #todayis {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: 0.03em;
+
+        color: #4A4A4A;
+        text-shadow: 3px 2px 4px rgba(0, 0, 0, 0.25);
+
+    }
+
+    #title{
+        font-family: 'Italianno';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 120px;
+        line-height: 150px;
+        /* identical to box height */
+        letter-spacing: 0.03em;
+
+        text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+        span:nth-child(1) {
+            color: #26AD00;
+        }
+        span:nth-child(2) {
+            color: #FFD500;
+        }
+    }
+}
