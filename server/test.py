@@ -15,10 +15,14 @@ user_db = NotionDatabase("206dc33ef503803da0d9e88586149f90")
 # }
 # result = user_db.create_database_page(properties)
 # print(result)
-import json
-user_list = user_db.get_page_ids()
+
+# import json
+
+# user_list = user_db.get_page_ids()
+
 # with open("test.json", "w", encoding="utf-8") as f:
 #     json.dump(user_db.get_page_properties(user_list[0]).result, f, ensure_ascii=False, indent=4)
+
 # page = user_db.get_page_properties(user_list[0])
 # today = datetime.now().strftime("%Y-%m-%d") + '+0900'
 # # page.result["날짜"]["date"]["start"] 값이 "2025-05-28" 같은 문자열이라고 가정

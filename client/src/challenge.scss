@@ -8,8 +8,6 @@
         line-height: 48px;
         letter-spacing: 0.03em;
 
-        color: #2BAE66;
-
         /* Inside auto layout */
         flex: none;
         order: 0;
@@ -30,9 +28,8 @@
     }
 
     .challenge-item {
-        background: rgba(160,255,128,0.4);
+        background: #A7BFAD;
         border-radius: 5px;
-        border: 0.5px solid #005509;
         width: 90.27%;
         height: 300px;
         padding: 25px;
@@ -87,7 +84,7 @@
         .challenge-title h3 {
             font-family: Inter, sans-serif;
             font-size: 32px;
-            color: #50586C;
+            color: #FCF6F5;
             font-weight: 400;
             letter-spacing: 0.05em;
             margin: 0;
@@ -116,7 +113,7 @@
             padding: 2px 5px;
             font-family: Inter, sans-serif;
             font-size: 17px;
-            color: #000;
+            color: #FCF6F5;
             font-weight: 400;
             letter-spacing: 0.05em;
         }
@@ -125,7 +122,7 @@
             margin-top: 14px;
             font-family: Inter, sans-serif;
             font-size: 25px;
-            color: #50586C;
+            color: #FCF6F5;
             font-weight: 400;
             letter-spacing: 0.05em;
         }
@@ -149,14 +146,14 @@
     .challenge-item .challenge-participants {
         font-family: Inter, sans-serif;
         font-size: 20px;
-        color: #000;
+        color: #FCF6F5;
         font-weight: 300;
     }
 
     .challenge-item .challenge-period {
         font-family: Inter, sans-serif;
         font-size: 20px;
-        color: #000;
+        color: #FCF6F5;
         font-weight: 300;
         margin-top: 23px;
     }
@@ -176,7 +173,7 @@
     .challenge-item .challenge-cheer span {
         font-family: Inter, sans-serif;
         font-size: 20px;
-        color: #000;
+        color: #FCF6F5;
         font-weight: 300;
     }
 
@@ -193,7 +190,7 @@
     }
 
     .challenge-item .challenge-join-btn {
-        background: #5BD1FF;
+        background: #98A8B4;
         color: #fff;
         font-family: Inter, sans-serif;
         font-size: 18px;

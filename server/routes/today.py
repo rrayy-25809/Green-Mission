@@ -30,3 +30,8 @@ def today():
 @bp.route('/calendar')
 def calendar():
     return render_template('calendar.html')
+
+@bp.route('/challenge', methods=['POST'])
+def challenge():
+    # 챌린지 관련 로직을 여기에 추가
+    return "챌린지 기능은 아직 구현되지 않았습니다."

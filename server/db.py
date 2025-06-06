@@ -50,7 +50,14 @@ class NotionDatabase:
 
     def create_database_page(self, properties: dict | Properties):
         if type(properties) is dict:
-            PROPERTY:Properties = self._dict_to_properties(properties)
+            PROPERTY = Properties()
+    
+            res = self.get_database_properties()
+            
+            for k, v in res['properties'].items():
+                property_type = v['type']
+                if k in properties:
+                    getattr(PROPERTY, f'set_{property_type}')(k, properties[k])
         else:
             PROPERTY:Properties = properties # type: ignore
             

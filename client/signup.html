@@ -8,11 +8,15 @@
     <body>
         <div id="navbar-placeholder"></div>
         <div class="container mt-5">
-            <h1 class="text-center mb-4">로그인</h1>
+            <h1 class="text-center mb-4">회원가입</h1>
             <div class="text-center mb-4">
-                <p>Green Mission에 로그인하여 환경 보호 챌린지에 참여하세요!</p>
+                <p>Green Mission에 회원가입하여 환경 보호 챌린지에 참여하세요!</p>
             </div>
-            <form id="login-form">
+            <form id="signup-form">
+                <div class="input-group mb-3">
+                    <label for="name" class="input-group-text">이름</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
                 <div class="input-group mb-3">
                     <label for="email" class="input-group-text">이메일</label>
                     <input type="text" id="email" name="email" class="form-control" required>
@@ -24,17 +28,22 @@
                         <option value="yahoo.com">yahoo.com</option>
                     </select>
                 </div>
-                <div class="input-group">
+                <div class="input-group mb-3">
                     <label for="password" class="input-group-text">비밀번호</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-                <button type="submit" class="btn btn-primary">로그인</button>
+                <div class="input-group">
+                    <label for="phone" class="input-group-text">전화번호</label>
+                    <input type="tel" id="phone" placeholder="010-1234-5678" name="phone" class="form-control">
+                </div>
+                <div class="form-text mb-3" id="basic-addon4">전화번호는 선택 사항 입니다.</div>
+                <button type="submit" class="btn btn-primary">회원가입</button>
             </form>
             <div class="text-center mt-3">
-                <p>아직 회원이 아니신가요? <a href="/signup">회원가입</a></p>
+                <p>이미 회원이신가요? <a href="/login">로그인</a></p>
             </div>
         </div>
         <script type="module" src="src/main.ts"></script>
-        <script type="module" src="src/login.ts"></script>
+        <script type="module" src="src/signup.ts"></script>
     </body>
 </html>

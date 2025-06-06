@@ -24,8 +24,11 @@ def login():
             i_data = user_db.get_page_properties(i).result  # 각 페이지의 속성 가져오기
             if i_data["이메일"]["email"] == email and i_data["비밀번호"]["rich_text"][0]["text"]["content"] == password:
                 session["page_id"] = i # 로그인 성공 시 세션에 페이지 ID 저장
+                current_app.logger.info(f"사용자, {i} 가 로그인했습니다.")
+                current_app.logger.info(f"로그인 성공: {i_data['유저명']['title'][0]['text']['content']}")
                 return "로그인 성공!", 200
             
+        current_app.logger.warning(f"로그인 실패: 이메일={email}, 비밀번호={password}")
         return "로그인 실패: 이메일 또는 비밀번호가 잘못되었습니다.", 400
 
     elif "page_id" in session:
@@ -42,15 +45,19 @@ def logout():
 def signup():
     if request.method == "POST":
         properties = {
-            '유저명' : request.form["username"],
-            '이메일' : request.form["email"],
+            '유저명' : request.form["name"],
+            '이메일' : request.form["email"] + "@" + request.form["email-sever"],
             '비밀번호' : request.form["password"],
             '가입일' : datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '+0900',
             '사용자 역할' : "유저",
-            '전화번호' : request.form["phone_number"]
         }
+
+        if request.form["phone"] != "": # 전화번호가 비어있지 않은 경우에만 추가
+            properties['전화번호'] = request.form["phone"]
+
         result = user_db.create_database_page(properties)
-        current_app.logger.info(f"회원가입 성공: {result}")
+        current_app.logger.info(f"회원가입 성공: {result["id"]}")
         
         return redirect("/login")
-    return render_template("signup.html")
+    
+    return render_template("signup.html") # Get이면 회원가입 페이지 렌더링
