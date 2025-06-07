@@ -1,200 +1,195 @@
-.challenges{
-    h2{
-        /* 현재 사람들이 참여 중인 챌린지 */
-        font-family: 'Inter';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 40px;
-        line-height: 48px;
-        letter-spacing: 0.03em;
+.challenges h2{
+    /* 현재 사람들이 참여 중인 챌린지 */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: 0.03em;
 
-        /* Inside auto layout */
-        flex: none;
-        order: 0;
-        flex-grow: 0;
+    color: #4A4A4A;
 
-        margin-left: 5%;
-        margin-top: 50px;
-        margin-bottom: 12px;
-    }
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 
-    /* 챌린지 카드 Figma 스타일 반영 */
-    .challenge-list {
+    margin-left: 5%;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+/* 챌린지 카드 Figma 스타일 반영 */
+.challenge-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.challenge-item {
+    width: 90.27%;
+    height: 300px;
+    padding: 25px;
+    gap: 20px;
+    align-items: flex-start;
+    display: flex;
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+    background: rgba(241, 241, 241, 0.945098);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+
+    .challenge-img-box {
+        background: #D9D9D9;
+        border-radius: 20px;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 100%;
-    }
 
-    .challenge-item {
-        background: #A7BFAD;
-        border-radius: 5px;
-        width: 90.27%;
-        height: 300px;
-        padding: 25px;
-        gap: 20px;
-        align-items: flex-start;
-        display: flex;
-        margin-bottom: 12px;
-        margin-top: 12px;
-
-        .challenge-img-box {
+        img {
             width: 250px;
             height: 250px;
-            background: #D9D9D9;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            img {
-                width: 220px;
-                height: 220px;
-                object-fit: cover;
-                border-radius: 15px;
-            }
-        }
-
-        .challenge-main {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 570px;
-            height: 250px;
-            justify-content: flex-start;
-        }
-
-        .challenge-header {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 21px;
-            padding: 2px 5px;
-        }
-
-        .challenge-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 0 1px;
-            height: 40px;
-        }
-
-        .challenge-title h3 {
-            font-family: Inter, sans-serif;
-            font-size: 32px;
-            color: #FCF6F5;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            margin: 0;
-        }
-
-        .challenge-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 0 7px;
-            height: 40px;
-        }
-
-        .challenge-user span {
-            font-family: Inter, sans-serif;
-            font-size: 14px;
-            color: #686868;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-        }
-
-        .challenge-hashtag {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 2px 5px;
-            font-family: Inter, sans-serif;
-            font-size: 17px;
-            color: #FCF6F5;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-        }
-
-        .challenge-desc {
-            margin-top: 14px;
-            font-family: Inter, sans-serif;
-            font-size: 25px;
-            color: #FCF6F5;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-        }
-
-        .challenge-divider {
-            width: 1px;
-            height: 254px;
-            background: rgba(0,0,0,0.5);
-            margin: 0 20px;
+            object-fit: cover;
+            border-radius: 15px;
         }
     }
 
-    .challenge-item .challenge-side {
+    .challenge-main {
         display: flex;
         flex-direction: column;
-        width: 349px;
+        gap: 15px;
+        width: 570px;
         height: 250px;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
-    .challenge-item .challenge-participants {
-        font-family: Inter, sans-serif;
-        font-size: 20px;
-        color: #FCF6F5;
-        font-weight: 300;
-    }
-
-    .challenge-item .challenge-period {
-        font-family: Inter, sans-serif;
-        font-size: 20px;
-        color: #FCF6F5;
-        font-weight: 300;
-        margin-top: 23px;
-    }
-
-    .challenge-item .challenge-cheer {
+    .challenge-header {
         display: flex;
-        align-items: flex-end;
-        gap: 10px;
-        margin-top: 40px;
+        flex-direction: row;
+        align-items: center;
+        gap: 21px;
+        padding: 2px 5px;
     }
 
-    .challenge-item .challenge-cheer img {
-        width: 24px;
+    .challenge-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 1px;
         height: 40px;
     }
 
-    .challenge-item .challenge-cheer span {
+    .challenge-title h3 {
         font-family: Inter, sans-serif;
-        font-size: 20px;
-        color: #FCF6F5;
-        font-weight: 300;
+        font-size: 32px;
+        color: #3D3D3D;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        margin: 0;
     }
 
-    .challenge-item .challenge-share {
+    .challenge-user {
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-top: 10px;
+        padding: 15px 0 7px;
+        height: 40px;
     }
 
-    .challenge-item .challenge-share img {
-        width: 46px;
-        height: 46px;
-    }
-
-    .challenge-item .challenge-join-btn {
-        background: #98A8B4;
-        color: #fff;
+    .challenge-user span {
         font-family: Inter, sans-serif;
-        font-size: 18px;
-        font-weight: 500;
-        margin-top: 10px;
+        font-size: 14px;
+        color: #686868;
+        font-weight: 400;
+        letter-spacing: 0.05em;
     }
+
+    .challenge-hashtag {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 2px 5px;
+        font-family: Inter, sans-serif;
+        font-size: 17px;
+        color: #3D3D3D;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+    }
+
+    .challenge-desc {
+        margin-top: 14px;
+        font-family: Inter, sans-serif;
+        font-size: 25px;
+        color: #3D3D3D;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+    }
+
+    .challenge-divider {
+        width: 1px;
+        height: 254px;
+        background: rgba(0,0,0,0.5);
+        margin: 0 20px;
+    }
+}
+
+.challenge-item .challenge-side {
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    justify-content: space-between;
+}
+
+.challenge-item .challenge-participants {
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    color: #3D3D3D;
+    font-weight: 300;
+}
+
+.challenge-item .challenge-period {
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    color: #3D3D3D;
+    font-weight: 300;
+    margin-top: 23px;
+}
+
+.challenge-item .challenge-side-bottom {
+    display: flex;
+    margin-top: 100px;
+}
+
+.challenge-item .challenge-cheer {
+    display: flex;
+    align-items: flex-end;
+    i{
+        color: #ff0000;
+        font-size: 24px;
+    }
+    margin-right: 14px;
+}
+
+.challenge-item .challenge-cheer span {
+    font-family: Inter, sans-serif;
+    font-size: 20px;
+    color: #3D3D3D;
+    font-weight: 300;
+}
+
+.challenge-item .challenge-share {
+    align-items: center;
+    font-size: 25px;
+    margin-right: 146px;
+    margin-top: 15px;
+}
+
+.challenge-item .challenge-join-btn {
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 10px;
 }

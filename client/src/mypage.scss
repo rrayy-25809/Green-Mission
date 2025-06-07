@@ -1,0 +1,62 @@
+// Figma 마이페이지 상단바 스타일
+#mypage-controller {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    background: #ffffff;
+    box-sizing: border-box;
+
+    .mypage-title {
+        /* 마이 페이지 */
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 60px;
+        line-height: 73px;
+        /* identical to box height */
+
+        color: #000000;
+
+        text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.2);
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+    }
+
+    .mypage-button-group {
+        display: flex;
+        flex-direction: row; // 가로 정렬
+        gap: 16px;           // 버튼 사이 간격(원하는 값으로 조정)
+
+        margin-top: 27px;
+        margin-left: 25%;
+
+        .btn-mypage {
+            font-family: Inter, sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+
+            height: 65px;
+            border: 0.5px solid #000;
+            border-radius: 100px;
+            padding: 5px 26px;
+
+            background: #ffffff;
+            color: #000;
+
+            display: flex;               // 추가
+            align-items: center;         // 추가
+            justify-content: center;     // 추가
+
+            &:hover {
+                background: #14A700;
+                color: #ffffff;
+                border: none;
+            }
+        }
+    }
+}

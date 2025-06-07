@@ -25,8 +25,8 @@ document.title = title;
 document.addEventListener("DOMContentLoaded", () => {
     const navbarHtml = `
     <nav class="navbar" data-bs-theme="light">
-        <a type="button" class="btn btn-secondary" href="/mypage">마이 페이지</a>
-        <a type="button" class="btn btn-secondary" href="/login">로그인</a>
+        <a type="button" class="btn btn-dark" href="/mypage">마이 페이지</a>
+        <a type="button" class="btn btn-dark" href="/login">로그인</a>
     </nav>`;
 
     const footerHtml = `<p>© 2025 Green Mission</p>
