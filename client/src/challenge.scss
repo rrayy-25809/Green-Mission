@@ -7,8 +7,6 @@
     line-height: 48px;
     letter-spacing: 0.03em;
 
-    color: #4A4A4A;
-
     /* Inside auto layout */
     flex: none;
     order: 0;
@@ -133,6 +131,10 @@
         height: 254px;
         background: rgba(0,0,0,0.5);
         margin: 0 20px;
+
+        @media (max-width: 1040px) {
+            display: none; // 모바일에서는 숨김 처리
+        }
     }
 }
 
@@ -141,6 +143,10 @@
     flex-direction: column;
     height: 250px;
     justify-content: space-between;
+
+    @media (max-width: 1040px) {
+        display: none; // 모바일에서는 숨김 처리
+    }
 }
 
 .challenge-item .challenge-participants {

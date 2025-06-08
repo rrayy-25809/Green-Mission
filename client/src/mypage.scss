@@ -1,6 +1,6 @@
 // Figma 마이페이지 상단바 스타일
 #mypage-controller {
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +35,7 @@
         margin-top: 27px;
         margin-left: 25%;
 
-        .btn-mypage {
+        .btn-mypage-controller {
             font-family: Inter, sans-serif;
             font-size: 18px;
             font-weight: 600;
@@ -58,5 +58,146 @@
                 border: none;
             }
         }
+    }
+}
+
+.mypage-info-title{
+    /* 내 정보 */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+    letter-spacing: 0.03em;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+
+    margin-left: 5%;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.mypage-content {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .mypage-info-container {
+        display: flex;
+        width: 1440px;
+        height: 695px;
+        position: relative;
+        padding: 30px;
+
+        .profile-section {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin-left: 11%;
+
+            .profile-image {
+                width: 350px;
+                height: 350px;
+                background: #D9D9D9;
+                border-radius: 50%;
+                margin-top: 143px;
+            }
+        }
+
+        .info-section {
+            border-left: 1px solid #000000;
+            padding: 20px 50px;
+            margin-left: 50px;
+
+            .user-name {
+                font-family: 'Inter';
+                font-weight: 400;
+                font-size: 40px;
+                line-height: 1.21em;
+                margin-top: 120px;
+            }
+
+            .user-email {
+                font-family: 'Inter';
+                font-weight: 200;
+                font-size: 30px;
+                line-height: 1.21em;
+                margin-top: 35px;
+            }
+
+            .user-role,
+            .challenge-count {
+                font-family: 'Inter';
+                font-weight: 200;
+                font-size: 30px;
+                line-height: 1.21em;
+                letter-spacing: 5%;
+                margin-top: 27px;
+            }
+
+            .join-date {
+                font-family: 'Inter';
+                font-weight: 300;
+                font-size: 30px;
+                line-height: 1.21em;
+                letter-spacing: 5%;
+                color: #6F6F6F;
+                margin-top: 60px;
+            }
+        }
+
+        .button-section {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            gap: 20px;
+
+            .btn-mypage-info{
+                font-family: Inter, sans-serif;
+                font-size: 18px;
+                font-weight: 600;
+
+                height: 65px;
+                border-radius: 100px;
+                padding: 5px 26px;
+
+                background: #DEDEDE;
+                color: #000000;
+
+                display: flex;               // 추가
+                align-items: center;         // 추가
+                justify-content: center;     // 추가
+
+                &:hover {
+                    background: #009dff;
+                    color: #ffffff;
+                }
+            }
+        }
+    }
+}
+
+#my-footprint {
+    h2{
+        /* 나의 발자국 */
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 48px;
+        letter-spacing: 0.03em;
+
+        /* Inside auto layout */
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+
+        margin-left: 5%;
+        margin-top: 50px;
+        margin-bottom: 15px;
     }
 }

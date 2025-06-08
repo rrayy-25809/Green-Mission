@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, session, current_app
+from flask import Blueprint
 from server.db import NotionDatabase
 from dotenv import load_dotenv
 from datetime import datetime
@@ -26,12 +26,3 @@ def today():
             return f"오늘은 {today_date.month}월 {today_date.day}일 {anniversary_date_name}입니다!"
    
     return "오늘의 기념일이 없습니다."  # 오늘 날짜와 일치하는 기념일이 없을 경우
-
-@bp.route('/calendar')
-def calendar():
-    return render_template('calendar.html')
-
-@bp.route('/challenge', methods=['POST'])
-def challenge():
-    # 챌린지 관련 로직을 여기에 추가
-    return "챌린지 기능은 아직 구현되지 않았습니다."

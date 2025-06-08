@@ -5,21 +5,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="src/style.scss">
         <link rel="stylesheet" href="src/mypage.scss">
+        <link rel="stylesheet" href="src/challenge.scss">
     </head>
     <body>
         <div id="navbar-placeholder"></div>
         <div id="mypage-controller">
             <h1 class="mypage-title mb-4">마이 페이지</h1>
             <div class="mypage-button-group mb-auto">
-                <a href="#mypage-info" class="btn btn-mypage active">내 정보</a>
-                <a href="" class="btn btn-mypage">내가 참여 중인 챌린지</a>
-                <a href="" class="btn btn-mypage">나의 발자국</a>
+                <a href="#mypage-info" class="btn btn-mypage-controller">내 정보</a>
+                <a href="#my-challenge" class="btn btn-mypage-controller">내가 참여 중인 챌린지</a>
+                <a href="#my-footprint" class="btn btn-mypage-controller">나의 발자국</a>
             </div>
         </div>
         <hr class="line">
-        <div id="mypage-info"></div>
-
+        <h2 class="mypage-info-title">내 정보</h2>
+        <div id="mypage-info" class="mypage-content">
+            <div class="mypage-info-container">
+            </div>
+        </div>
+        <hr class="line">
+        <div id="my-challenge" class="challenges">
+            <h2>내가 참여 중인 챌린지</h2>
+            <div class="challenge-list">
+                
+            </div>
+        </div>
+        <hr class="line">
+        <div id="my-footprint">
+            <h2>나의 발자국</h2>
+            <div class="footprint-list">
+                <div class="footprint-item">
+                    <div class="footprint-date">2025.06.07</div>
+                    <div class="footprint-description">챌린지 참여: '플라스틱 줄이기'</div>
+                </div>
+                <!-- 추가적인 발자국 항목들 -->
+            </div>
         <div class="footer"></div>
         <script type="module" src="src/main.ts"></script>
+        <script type="module" src="src/mypage.ts"></script>
+        <script type="module" src="src/challenge.ts"></script>
     </body>
 </html>
