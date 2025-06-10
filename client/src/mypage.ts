@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (fileinput.files != null){
             const formData = new FormData();
             formData.append('image', fileinput.files[0])
+            formData.append('url', window.location.href.replace("/mypage",""))
     
             const response = await fetch('/change_profile', {
                 method: "POST",
@@ -41,9 +42,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
     
             if (response.ok) {
-                alert("프로필 사진이 변경되었습니다. 새로고침 하세요.")
+                alert("프로필 사진을 변경하셨습니다. 새로고침 해 주세요");
             } else{
-                alert("프로필 사진 변경에 실패하였습니다.")
+                alert("프로필 사진 변경에 실패하였습니다.");
             }
         }
     });

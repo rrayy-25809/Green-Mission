@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, redirect, render_template, request, session, current_app
+from notion_database.properties import Properties
 from server.db import NotionDatabase
 from dotenv import load_dotenv
 from datetime import datetime
-import base64
 import os
 
 # 플라스크 기본 설정
@@ -47,18 +47,23 @@ def delete_account():
 
     return redirect("/login")
 
-
 @bp.route("/change_profile", methods=["POST"])
 def change_profile():
     img = request.files.get('image')
+    url = request.form.get('url')
+    print(url)
     page_id = session["page_id"]
-    properties = user_db.get_page_properties(page_id)
-    current_app.logger.info(f"유저 {page_id}가 프로필 사진 변경 시도")
+    properties = Properties()
 
-    base64_encoded = base64.b64encode(img.stream)
-    base64_string = base64_encoded.decode('utf-8')
+    # 파일 저장 (예: 업로드된 파일을 'uploads' 폴더에 저장)
+    if img:
+        path = os.path.join(current_app.instance_path, 'uploads', f'profile_{session["page_id"]}.jpg')
+        img.save(path)
+    else:
+        return "프로필 사진이 없습니다.", 400
 
-    properties.set_files("프로필 사진",[base64_string])
-    user_db.update_database_properties(page_id,)
-
+    properties.set_files("프로필 사진",[f"{url}/uploads/profile_{session["page_id"]}.jpg"])
+    user_db.update_database_properties(page_id, properties)
+    current_app.logger.info(f"사용자, {page_id} 가 프로필 사진을 변경했습니다.")
+    
     return "프로필 사진 업데이트 완료!", 200

@@ -1,7 +1,8 @@
 from db import NotionDatabase
 from datetime import datetime
+from notion_database.properties import Properties
 
-user_db = NotionDatabase("206dc33ef503803da0d9e88586149f90")
+user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
 
 # print(user_db.get_database_properties())
 
@@ -35,3 +36,9 @@ user_db = NotionDatabase("206dc33ef503803da0d9e88586149f90")
 #     print("오늘의 기념일이 있습니다.")
 
 # print(user_db.get_page_properties(user_list[1]))
+
+
+properties = Properties()
+properties.set_files("프로필 사진",["https://i.pinimg.com/736x/d5/6d/18/d56d1893c7e9930886e4c3fbfe30eff6.jpg"])
+
+user_db.update_database_properties("20cdc33e-f503-81ea-bf68-c3289fba5dd0", properties)

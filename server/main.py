@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+import os
+from flask import Flask, render_template, send_from_directory
 from server.routes.auth import bp as auth_bp
 from server.routes.user import bp as user_bp
 from server.routes.today import bp as today_bp
@@ -7,6 +8,7 @@ import logging
 
 # 플라스크 기본 설정
 flask = Flask(__name__, template_folder='../dist/client', static_folder='../dist/assets')
+UPLOAD_FOLDER = os.path.join(flask.instance_path, 'uploads')
 logging.getLogger('werkzeug').setLevel(logging.WARNING)
 flask.secret_key = 'LN$oaYB9-5KBT7G'
 flask.logger.setLevel(logging.INFO)
@@ -21,3 +23,7 @@ flask.register_blueprint(challenge_bp)
 @flask.route("/") # 메인 페이지 라우트
 def main():
     return render_template("index.html")
+
+@flask.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
