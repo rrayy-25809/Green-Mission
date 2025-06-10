@@ -18,8 +18,6 @@ def login():
         email = request.form["email"] +"@"+ request.form["email-sever"]
         password = request.form["password"]
 
-        print(f"로그인 시도: 이메일={email}, 비밀번호={password}")
-
         for i in user_db.get_page_ids(): # 모든 페이지 ID를 가져와 반복
             i_data = user_db.get_page_properties(i).result  # 각 페이지의 속성 가져오기
             if i_data["이메일"]["email"] == email and i_data["비밀번호"]["rich_text"][0]["text"]["content"] == password:
