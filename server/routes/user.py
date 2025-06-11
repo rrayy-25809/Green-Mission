@@ -51,7 +51,6 @@ def delete_account():
 def change_profile():
     img = request.files.get('image')
     url = request.form.get('url')
-    print(url)
     page_id = session["page_id"]
     properties = Properties()
 

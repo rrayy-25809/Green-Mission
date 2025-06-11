@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, current_app, render_template
+from flask import Blueprint, jsonify, request, current_app, render_template, session
 from server.db import NotionDatabase
 from dotenv import load_dotenv
 import os
@@ -47,6 +47,14 @@ def challenge(what_kinda):
 @bp.route('/make_challenge', methods=['GET', 'POST'])
 def make_challenge():
     if request.method == "POST":
-        current_app.logger.info("챌린지 만드는 중")
+        properties = {
+            "챌린지 제목" : request.form.get("title"),
+            "챌린지 작성자" : session["page_id"],
+            "챌린지 설명" : request.form.get("description"),
+            "date" : request.form.get("date")
+        }
+
+        challenge_db.create_database_page(properties)
+        current_app.logger.info(f"사용자, {properties["챌린지 작성자"]} 가 새 챌린지{properties["챌린지 제목"]}를 만들었습니다.")
         return "제작중", 500
     return render_template("make_challenge.html")
