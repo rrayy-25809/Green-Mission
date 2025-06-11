@@ -12,9 +12,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     </div>`; // 로딩 표시를 위한 HTML 코드
     challenge_list.innerHTML = loading; //innerHTML를 사용하면 기존의 내용을 모두 지우고 새로운 내용을 삽입
 
-    const path = window.location.pathname;
+    let path = "";
+    if (window.location.pathname == "/mypage") {
+        path = "/user";
+    } else if (window.location.pathname.startsWith("/challenge")) {
+        path = window.location.pathname.replace("/challenge", "");
+    } else{
+        path = "/s"
+    }
 
-    const response = await fetch(`/challenge${path}s`, {
+    const response = await fetch(`/challenge${path}`, {
         method: "POST",
     });
 
