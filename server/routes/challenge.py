@@ -9,7 +9,7 @@ bp = Blueprint('challenge', __name__)
 # 데이터베이스 설정
 load_dotenv()
 # challenge_db = NotionDatabase(os.getenv("CHALLENGE_DB_ID"))
-challenge_db = NotionDatabase("20bdc33ef503801e9d94d96404fe33d7")
+challenge_db = NotionDatabase(os.getenv("CHALLENGE_DB_ID"))
 user_db = NotionDatabase(os.getenv("USER_DB_ID"))
 
 @bp.route('/challenge/<what_kinda>', methods=['POST'])
@@ -36,8 +36,11 @@ def challenge(what_kinda):
 
         return jsonify(data)
     elif what_kinda == "user": # 유저가 참여한 챌린지 목록(현 페이지가 마이페이지일 때)
+        user_properties = user_db.get_page_properties(session["page_id"])
+        challenge_list_str = user_properties.result # 챌린지 리스트를 문자열로 저장 (id1,id2)(괄호는 그냥 한거임 대괄호 없음)
+        challenge_list:list[str] # str to list진행
         data = []
-        for i in challenge_db.get_page_ids():
+        for i in challenge_list:
             page = challenge_db.get_page_properties(i)
 
             try:
@@ -57,13 +60,21 @@ def challenge(what_kinda):
 
         return jsonify(data)
     else: # 페이지가 /challenge일 때
-        return [{ # 테스트용 더미 데이터
-                "챌린지 ID" : "11111234",
-                "챌린지 제목": "page.result[]['title'][0]['text']['content']",
-                "챌린지 작성자" : "author",
-                "챌린지 아이콘" : "awef",
-                "챌린지 설명" : "awfe",
-            }]
+        page = challenge_db.get_page_properties(what_kinda)
+
+        try:
+            author_id = user_db.get_page_properties(page.result["챌린지 작성자"]["rich_text"][0]["text"]["content"])
+            author = author_id.result["유저명"]["title"][0]["text"]["content"]
+        except:
+            author = "Green Mission"
+        
+        return [{
+            "챌린지 ID" : what_kinda,
+            "챌린지 제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
+            "챌린지 작성자" : author,
+            "챌린지 아이콘" : page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
+            "챌린지 설명" : page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
+        }]
     
 @bp.route('/make_challenge', methods=['GET', 'POST'])
 def make_challenge():
