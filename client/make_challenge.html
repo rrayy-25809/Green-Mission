@@ -17,7 +17,21 @@
             </div>
         </div>
         <hr class="line">
-
+        <form id="make_challenge">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">제목</span>
+                <input type="text" class="form-control" placeholder="제목" aria-label="title" aria-describedby="basic-addon1">
+            </div>
+            <div>
+                <input type="date" name="bday"/>
+                <input type="date" name="bday"/>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 595px;"></textarea>
+                <label for="floatingTextarea">내용 입력창</label>
+            </div>
+            <button type="submit" class="btn btn-mypage-info" style="height: 45px;">작성하기</button>
+        </form>
         <div class="footer"></div>
         <script type="module" src="src/main.ts"></script>
     </body>

@@ -174,28 +174,6 @@
             bottom: 20px;
             display: flex;
             gap: 20px;
-
-            .btn-mypage-info{
-                font-family: Inter, sans-serif;
-                font-size: 18px;
-                font-weight: 600;
-
-                height: 65px;
-                border-radius: 100px;
-                padding: 5px 26px;
-
-                background: #DEDEDE;
-                color: #000000;
-
-                display: flex;               // 추가
-                align-items: center;         // 추가
-                justify-content: center;     // 추가
-
-                &:hover {
-                    background: #009dff;
-                    color: #ffffff;
-                }
-            }
         }
     }
 }
@@ -218,5 +196,27 @@
         margin-left: 5%;
         margin-top: 50px;
         margin-bottom: 15px;
+    }
+}
+
+.btn-mypage-info{
+    font-family: Inter, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+
+    height: 65px;
+    border-radius: 100px;
+    padding: 5px 26px;
+
+    background: #DEDEDE;
+    color: #000000;
+
+    display: flex;               // 추가
+    align-items: center;         // 추가
+    justify-content: center;     // 추가
+
+    &:hover {
+        background: #009dff;
+        color: #ffffff;
     }
 }
