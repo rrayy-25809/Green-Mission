@@ -214,4 +214,51 @@
     border: 1px solid #000000;
 
     padding: 3%;
+
+    .top-input{
+        margin-bottom: 27px;
+
+        .date-input{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            input[type="date"] {
+                border: 1px solid #ced4da;
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                color: #495057;
+                background-color: #fff;
+                transition: border-color 0.15s, box-shadow 0.15s;
+                
+                &:focus {
+                    border-color: #86b7fe;
+                    outline: 0;
+                    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+                }
+
+                &:first-child{
+                    border-radius: 0.375rem 0 0 0.375rem;
+                }
+
+                &:last-child{
+                    border-radius: 0 0.375rem 0.375rem 0;
+                }
+            }
+
+            span{
+                display: flex;
+                align-items: center;
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #212529;
+                text-align: center;
+                white-space: nowrap;
+                background-color: #F8F9FA;
+                border: 1px solid #ced4da;
+            }
+        }
+    }
 }

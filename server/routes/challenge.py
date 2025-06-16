@@ -22,7 +22,7 @@ def challenge(what_kinda):
             try:
                 author_id = user_db.get_page_properties(page.result["챌린지 작성자"]["rich_text"][0]["text"]["content"])
                 author = author_id.result["유저명"]["title"][0]["text"]["content"]
-            except:
+            except KeyError:
                 author = "Green Mission"
                 
             challenge = {
@@ -37,9 +37,14 @@ def challenge(what_kinda):
         return jsonify(data)
     elif what_kinda == "user": # 유저가 참여한 챌린지 목록(현 페이지가 마이페이지일 때)
         user_properties = user_db.get_page_properties(session["page_id"])
-        challenge_list_str = user_properties.result # 챌린지 리스트를 문자열로 저장 (id1,id2)(괄호는 그냥 한거임 대괄호 없음)
-        challenge_list:list[str] # str to list진행
+        try:
+            challenge_list_str:str = user_properties.result["참여한 챌린지"]["rich_text"][0]["text"]["content"] # 챌린지 리스트를 문자열로 저장 (id1,id2)(괄호는 그냥 한거임 대괄호 없음)
+        except KeyError:
+            return "참여한 챌린지가 없습니다.", 200
+        
+        challenge_list:list[str] = challenge_list_str.split(",")
         data = []
+
         for i in challenge_list:
             page = challenge_db.get_page_properties(i)
 

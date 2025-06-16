@@ -18,13 +18,16 @@
         </div>
         <hr class="line">
         <form id="make_challenge">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">제목</span>
-                <input type="text" class="form-control" placeholder="제목" aria-label="title" aria-describedby="basic-addon1">
-            </div>
-            <div>
-                <input type="date" name="bday"/>
-                <input type="date" name="bday"/>
+            <div class="top-input row">
+                <div class="input-group col">
+                    <span class="input-group-text" id="basic-addon1">제목</span>
+                    <input type="text" class="form-control" placeholder="제목" aria-label="title" aria-describedby="basic-addon1">
+                </div>
+                <div class="col date-input">
+                    <input type="date" name="bday"/>
+                    <span>~</span>
+                    <input type="date" name="bday"/>
+                </div>
             </div>
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 595px;"></textarea>

@@ -26,8 +26,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     if (response.ok) {
+        const responseText = await response.text();
+        if (responseText == "참여한 챌린지가 없습니다.") {
+            challenge_list.innerHTML = `<h2>참여한 챌린지가 없습니다.</h2>
+            <a type="button" class="btn btn-primary btn-lg" href="/#challenges">참여 가능한 챌린지 확인하기</a>`;
+            return;
+        }
         challenge_list.innerHTML = ''; // 로딩 표시를 제거하고 챌린지 목록을 비웁니다.
-        const data = await response.json();
+        const data = JSON.parse(responseText);
         for (let index = 0; index < data.length; index++) {
             const i = data[index];
             const challenge = `<div class="row g-0 challenge-item">
