@@ -10,7 +10,7 @@
     <body>
         <div id="navbar-placeholder"></div>
         <div id="mypage-controller">
-            <h1 class="mypage-title mb-4">챌린지 만들기</h1>
+            <h1 class="mypage-title">챌린지 만들기</h1>
             <div class="mypage-button-group mb-6" style="margin-left: 48%;">
                 <div class="vr"></div>
                 <a href="/" class="btn btn-back">메인으로 돌아가기</a>
@@ -21,25 +21,28 @@
             <div class="top-input row">
                 <div class="input-group col">
                     <span class="input-group-text" id="basic-addon1">제목</span>
-                    <input type="text" class="form-control" placeholder="제목" aria-label="title" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="제목" aria-label="title" aria-describedby="basic-addon1" name="title">
                 </div>
                 <div class="col date-input">
-                    <input type="date" name="bday"/>
+                    <input type="date" name="start_day"/>
                     <span>~</span>
-                    <input type="date" name="bday"/>
+                    <input type="date" name="end_day"/>
                 </div>
             </div>
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 595px;"></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 595px;" name="description"></textarea>
                 <label for="floatingTextarea">내용 입력창</label>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1"><i class="bi bi-paperclip"></i></span>
-                <input type="text" class="form-control" placeholder="이미지 링크" aria-label="img-url" aria-describedby="basic-addon1">
+            <div class="bottom-input">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-paperclip"></i></span>
+                    <input type="text" class="form-control" placeholder="이미지 링크" aria-label="img-url" aria-describedby="basic-addon1" name="img_url">
+                </div>
+                <button type="submit" class="btn btn-mypage-info" style="height: 45px;">작성하기</button>
             </div>
-            <button type="submit" class="btn btn-mypage-info" style="height: 45px;">작성하기</button>
         </form>
         <div class="footer"></div>
         <script type="module" src="src/main.ts"></script>
+        <script type="module" src="src/make_challenge.ts"></script>
     </body>
 </html>

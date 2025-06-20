@@ -261,4 +261,15 @@
             }
         }
     }
+
+    .bottom-input{
+        display: flex;
+        gap: 18%;
+        margin-bottom: 20px;
+        margin-top: 50px;
+
+        .input-group{
+            width: 65%;
+        }
+    }
 }

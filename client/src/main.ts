@@ -18,7 +18,7 @@ switch (path) {
         title = 'Green Mission - 회원가입';
         break;
     default:
-        title = 'Green Mission - '+path.split('/')[0]
+        title = 'Green Mission - '+path.split('/')[1]
 }
 document.title = title;
 

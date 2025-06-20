@@ -88,7 +88,8 @@ def make_challenge():
             "챌린지 제목" : request.form.get("title"),
             "챌린지 작성자" : session["page_id"],
             "챌린지 설명" : request.form.get("description"),
-            "date" : request.form.get("date")
+            "date" : f"{request.form.get("start_day")} ~ {request.form.get("end_day")}",
+            "챌린지 아이콘" : request.form.get("img_url"),
         }
 
         challenge_db.create_database_page(properties)
