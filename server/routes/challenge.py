@@ -13,7 +13,7 @@ challenge_db = NotionDatabase(os.getenv("CHALLENGE_DB_ID"))
 user_db = NotionDatabase(os.getenv("USER_DB_ID"))
 
 @bp.route('/challenge/<what_kinda>', methods=['POST'])
-def challenge(what_kinda):
+def post_challenge(what_kinda):
     if what_kinda == "s": # 챌린지 목록 조회(기본 페이지)
         data = []
         for i in challenge_db.get_page_ids():
@@ -80,6 +80,12 @@ def challenge(what_kinda):
             "챌린지 아이콘" : page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
             "챌린지 설명" : page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
         }]
+    
+
+@bp.route('/challenge/<what_kinda>', methods=['GET'])
+def get_challenge(what_kinda):
+    
+    return render_template("challenge.html")
     
 @bp.route('/make_challenge', methods=['GET', 'POST'])
 def make_challenge():
