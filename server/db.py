@@ -38,6 +38,10 @@ class NotionDatabase:
                         value.append(file_item['file']['url'])
                     elif file_item.get('type') == 'external':
                         value.append(file_item['external']['url'])
+            elif property_type == "checkbox":
+                value = v['checkbox']
+            elif property_type == 'set_created_time':
+                value = v['created_time']
             else:
                 value = None
             getattr(PROPERTY, f'set_{property_type}')(k, value)

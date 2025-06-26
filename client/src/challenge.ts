@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const loading = `<div id="loading-overlay">
-      <div class="spinner-border text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+        <div class="spinner-border text-secondary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>`; // 로딩 표시를 위한 HTML 코드
     challenge_list.innerHTML = loading; //innerHTML를 사용하면 기존의 내용을 모두 지우고 새로운 내용을 삽입
 

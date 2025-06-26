@@ -50,8 +50,9 @@ def post_challenge(what_kinda):
 
 @bp.route('/challenge/<what_kinda>', methods=['GET'])
 def get_challenge(what_kinda):
+    challenge = get_challenge_data(what_kinda)
     
-    return render_template("challenge.html")
+    return render_template("challenge.html",**challenge)
     
 @bp.route('/make_challenge', methods=['GET', 'POST'])
 def make_challenge():
