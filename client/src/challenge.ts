@@ -37,9 +37,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         for (let index = 0; index < data.length; index++) {
             const i = data[index];
             const challenge = `<div class="row g-0 challenge-item">
-                <div class="col-auto challenge-img-box">
+                <a class="col-auto challenge-img-box" href="/challenge/${i["챌린지 ID"]}">
                     <img src="${i["챌린지 아이콘"]}" alt="챌린지 이미지 1">
-                </div>
+                </a>
                 <div class="col challenge-main">
                     <div class="row challenge-header">
                         <div class="col-auto challenge-title">

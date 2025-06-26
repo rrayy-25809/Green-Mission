@@ -12,74 +12,40 @@ load_dotenv()
 challenge_db = NotionDatabase(os.getenv("CHALLENGE_DB_ID"))
 user_db = NotionDatabase(os.getenv("USER_DB_ID"))
 
+def get_author_name(author_id):
+    try:
+        author_page = user_db.get_page_properties(author_id[0]["text"]["content"])
+        return author_page.result["유저명"]["title"][0]["text"]["content"]
+    except KeyError:
+        return "Green Mission"
+
+def get_challenge_data(page_id):
+    page = challenge_db.get_page_properties(page_id)
+    return {
+        "챌린지 ID": page_id,
+        "챌린지 제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
+        "챌린지 작성자": get_author_name(page.result["챌린지 작성자"]["rich_text"]),
+        "챌린지 아이콘": page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
+        "챌린지 설명": page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
+    }
+
 @bp.route('/challenge/<what_kinda>', methods=['POST'])
 def post_challenge(what_kinda):
-    if what_kinda == "s": # 챌린지 목록 조회(기본 페이지)
-        data = []
-        for i in challenge_db.get_page_ids():
-            page = challenge_db.get_page_properties(i)
-
-            try:
-                author_id = user_db.get_page_properties(page.result["챌린지 작성자"]["rich_text"][0]["text"]["content"])
-                author = author_id.result["유저명"]["title"][0]["text"]["content"]
-            except KeyError:
-                author = "Green Mission"
-                
-            challenge = {
-                "챌린지 ID" : i,
-                "챌린지 제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
-                "챌린지 작성자" : author,
-                "챌린지 아이콘" : page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
-                "챌린지 설명" : page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
-            }
-            data.append(challenge)
-
+    if what_kinda == "s":
+        data = [get_challenge_data(i) for i in challenge_db.get_page_ids()]
         return jsonify(data)
-    elif what_kinda == "user": # 유저가 참여한 챌린지 목록(현 페이지가 마이페이지일 때)
+    elif what_kinda == "user":
         user_properties = user_db.get_page_properties(session["page_id"])
         try:
-            challenge_list_str:str = user_properties.result["참여한 챌린지"]["rich_text"][0]["text"]["content"] # 챌린지 리스트를 문자열로 저장 (id1,id2)(괄호는 그냥 한거임 대괄호 없음)
+            challenge_list_str = user_properties.result["참여한 챌린지"]["rich_text"][0]["text"]["content"]
         except KeyError:
             return "참여한 챌린지가 없습니다.", 200
-        
-        challenge_list:list[str] = challenge_list_str.split(",")
-        data = []
 
-        for i in challenge_list:
-            page = challenge_db.get_page_properties(i)
-
-            try:
-                author_id = user_db.get_page_properties(page.result["챌린지 작성자"]["rich_text"][0]["text"]["content"])
-                author = author_id.result["유저명"]["title"][0]["text"]["content"]
-            except:
-                author = "Green Mission"
-                
-            challenge = {
-                "챌린지 ID" : i,
-                "챌린지 제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
-                "챌린지 작성자" : author,
-                "챌린지 아이콘" : page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
-                "챌린지 설명" : page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
-            }
-            data.append(challenge)
-
+        challenge_list = challenge_list_str.split(",")
+        data = [get_challenge_data(i) for i in challenge_list]
         return jsonify(data)
-    else: # 페이지가 /challenge일 때
-        page = challenge_db.get_page_properties(what_kinda)
-
-        try:
-            author_id = user_db.get_page_properties(page.result["챌린지 작성자"]["rich_text"][0]["text"]["content"])
-            author = author_id.result["유저명"]["title"][0]["text"]["content"]
-        except:
-            author = "Green Mission"
-        
-        return [{
-            "챌린지 ID" : what_kinda,
-            "챌린지 제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
-            "챌린지 작성자" : author,
-            "챌린지 아이콘" : page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
-            "챌린지 설명" : page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
-        }]
+    else:
+        return jsonify([get_challenge_data(what_kinda)])
     
 
 @bp.route('/challenge/<what_kinda>', methods=['GET'])
