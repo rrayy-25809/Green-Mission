@@ -40,8 +40,8 @@ class NotionDatabase:
                         value.append(file_item['external']['url'])
             elif property_type == "checkbox":
                 value = v['checkbox']
-            elif property_type == 'set_created_time':
-                value = v['created_time']
+            elif property_type == 'created_time':
+                continue
             else:
                 value = None
             getattr(PROPERTY, f'set_{property_type}')(k, value)

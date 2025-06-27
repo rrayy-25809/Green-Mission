@@ -37,19 +37,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         for (let index = 0; index < data.length; index++) {
             const i = data[index];
             const challenge = `<div class="row g-0 challenge-item">
-                <a class="col-auto challenge-img-box" href="/challenge/${i["챌린지 ID"]}">
-                    <img src="${i["챌린지 아이콘"]}" alt="챌린지 이미지 1">
+                <a class="col-auto challenge-img-box" href="/challenge/${i["챌린지_ID"]}">
+                    <img src="${i["챌린지_아이콘"]}" alt="챌린지 이미지 1">
                 </a>
                 <div class="col challenge-main">
                     <div class="row challenge-header">
                         <div class="col-auto challenge-title">
-                            <h3>${i["챌린지 제목"]}</h3>
+                            <h3>${i["챌린지_제목"]}</h3>
                         </div>
                         <div class="col-auto challenge-user">
-                            <span>${i["챌린지 작성자"]}</span>
+                            <span>${i["챌린지_작성자"]}</span>
                         </div>
                     </div>
-                    <div class="challenge-desc">${i["챌린지 설명"]}</div>
+                    <div class="challenge-desc">${i["챌린지_설명"]}</div>
                     <div class="challenge-hashtag">#${'태준함'}</div>
                 </div>
                 <div class="challenge-divider d-none d-md-block"></div>

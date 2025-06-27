@@ -8,7 +8,6 @@ bp = Blueprint('challenge', __name__)
 
 # 데이터베이스 설정
 load_dotenv()
-# challenge_db = NotionDatabase(os.getenv("CHALLENGE_DB_ID"))
 challenge_db = NotionDatabase(os.getenv("CHALLENGE_DB_ID"))
 user_db = NotionDatabase(os.getenv("USER_DB_ID"))
 
@@ -22,11 +21,11 @@ def get_author_name(author_id):
 def get_challenge_data(page_id):
     page = challenge_db.get_page_properties(page_id)
     return {
-        "챌린지 ID": page_id,
-        "챌린지 제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
-        "챌린지 작성자": get_author_name(page.result["챌린지 작성자"]["rich_text"]),
-        "챌린지 아이콘": page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
-        "챌린지 설명": page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
+        "챌린지_ID": page_id,
+        "챌린지_제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
+        "챌린지_작성자": get_author_name(page.result["챌린지 작성자"]["rich_text"]),
+        "챌린지_아이콘": page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
+        "챌린지_설명": page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
     }
 
 @bp.route('/challenge/<what_kinda>', methods=['POST'])
