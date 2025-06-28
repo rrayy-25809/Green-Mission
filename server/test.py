@@ -2,20 +2,19 @@ from db import NotionDatabase
 from datetime import datetime
 from notion_database.properties import Properties
 
-user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
+challenge_db = NotionDatabase("20bdc33ef503801e9d94d96404fe33d7")
 
 # print(user_db.get_database_properties())
 
-# properties = {
-#     '유저명' : "VELOG",
-#     '이메일' : "VELOGisGODforCODE@gmail.com",
-#     '비밀번호' : "VELOGisGODforCODE",
-#     '가입일' : datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '+0900',
-#     '사용자 역할' : "관리자",
-#     '전화번호' : "010-1234-5678"
-# }
-# result = user_db.create_database_page(properties)
-# print(result)
+properties = {
+    '챌린지 제목': '요즘 ado 들음',
+    '챌린지 작성자': '20adc33e-f503-8192-86a7-dee7b3c5bf93',
+    '챌린지 설명': '보컬 긁는 거 지림',
+    '참여기한': '2025-06-28 ~ 2025-07-28',
+    '챌린지 아이콘': 'https://i.scdn.co/image/ab67616d0000b273e204aafb5c393179c77c5253'
+}
+result = challenge_db.create_database_page(properties)
+print(result)
 
 # import json
 
@@ -37,8 +36,7 @@ user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
 
 # print(user_db.get_page_properties(user_list[1]))
 
+# properties = Properties()
+# properties.set_files("프로필 사진",["https://i.pinimg.com/736x/d5/6d/18/d56d1893c7e9930886e4c3fbfe30eff6.jpg"])
 
-properties = Properties()
-properties.set_files("프로필 사진",["https://i.pinimg.com/736x/d5/6d/18/d56d1893c7e9930886e4c3fbfe30eff6.jpg"])
-
-user_db.update_database_properties("20cdc33e-f503-81ea-bf68-c3289fba5dd0", properties)
+# user_db.update_database_properties("20cdc33e-f503-81ea-bf68-c3289fba5dd0", properties)

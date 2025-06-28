@@ -2,6 +2,7 @@ from notion_database.page import Page
 from notion_database.properties import Properties
 from notion_database.database import Database
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 
 # 참고한 링크: https://velog.io/@newnew_daddy/PYTHON10#-2-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4-%EC%83%9D%EC%84%B1
@@ -41,6 +42,7 @@ class NotionDatabase:
             elif property_type == "checkbox":
                 value = v['checkbox']
             elif property_type == 'created_time':
+                PROPERTY.set_created_time(k)
                 continue
             else:
                 value = None
@@ -61,6 +63,17 @@ class NotionDatabase:
             for k, v in res['properties'].items():
                 property_type = v['type']
                 if k in properties:
+                    if property_type == "date":
+                        if "~" in properties[k]:
+                            date = properties[k].split(" ~ ")
+                            PROPERTY.set_date(k, date[0], date[1])
+                            continue
+                        else:
+                            PROPERTY.set_date(k, start=properties[k])
+                            continue
+                    elif property_type == "files":
+                        PROPERTY.set_files(k, [f"{properties[k]}",])  # 파일 URL을 리스트로 감싸서 전달
+                        continue
                     getattr(PROPERTY, f'set_{property_type}')(k, properties[k])
         else:
             PROPERTY:Properties = properties # type: ignore

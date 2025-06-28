@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app, render_template, session
 from server.db import NotionDatabase
 from dotenv import load_dotenv
+
 import os
 
 # 플라스크 기본 설정
@@ -68,3 +69,8 @@ def make_challenge():
         current_app.logger.info(f"사용자, {properties["챌린지 작성자"]} 가 새 챌린지{properties["챌린지 제목"]}를 만들었습니다.")
         return "제작중", 500
     return render_template("make_challenge.html")
+
+@bp.route('/join/<challenge_id>', methods=['GET'])
+def join_challenge(challenge_id): # 챌린지에 참여하려면 영상 올려야 하잖아 얘들아 싸우자
+    user = user_db.get_page_properties(session["page_id"])
+    return render_template("join_challenge.html")

@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="challenge-main">
-                <img class="challenge-image" src="{{챌린지_아이콘}}" alt="챌린지 이미지 1"></img>
+                <img class="challenge-image" src="{{챌린지_아이콘}}" alt="챌린지 이미지 1">
                 <div class="challenge-desc">{{챌린지_설명}}</div>
             </div>
             <div class="challenge-bottom">
@@ -54,12 +54,11 @@
                 </div>
             </div>
             <div class="challenge-button">
-                <button class="btn btn-mypage-info">참여 요청 보내기</button>
+                <a class="btn btn-mypage-info" href="/join/{{챌린지_ID}}">참여 요청 보내기</a>
             </div>
         </div>
         <div class="footer"></div>
         <script type="module" src="src/main.ts"></script>
-        <script type="module" src="src/mypage.ts"></script>
         <script type="module" src="src/challenge.ts"></script>
     </body>
 </html>
