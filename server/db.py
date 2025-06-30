@@ -16,37 +16,8 @@ class NotionDatabase:
 
     def _dict_to_properties(self, properties_dict: dict) -> Properties:
         PROPERTY = Properties()
-        for k, v in properties_dict.items():
-            property_type = v['type']
-            # 각 타입별로 적절히 값 추출
-            if property_type == "title":
-                value = v['title'][0]['text']['content'] if v['title'] else None
-            elif property_type == "rich_text":
-                value = v['rich_text'][0]['text']['content'] if v['rich_text'] else None
-            elif property_type == "select":
-                value = v['select']
-            elif property_type == "date":
-                value = v['date']
-            elif property_type == "email":
-                value = v['email']
-            elif property_type == "phone_number":
-                value = v['phone_number']
-            elif property_type == "files":
-                # 파일 리스트에서 url만 추출
-                value = []
-                for file_item in v['files']:
-                    if file_item.get('type') == 'file':
-                        value.append(file_item['file']['url'])
-                    elif file_item.get('type') == 'external':
-                        value.append(file_item['external']['url'])
-            elif property_type == "checkbox":
-                value = v['checkbox']
-            elif property_type == 'created_time':
-                PROPERTY.set_created_time(k)
-                continue
-            else:
-                value = None
-            getattr(PROPERTY, f'set_{property_type}')(k, value)
+        PROPERTY.result = properties_dict
+
         return PROPERTY
 
     def get_database_properties(self):
@@ -100,8 +71,8 @@ class NotionDatabase:
     def get_page_properties(self, page_id:str) -> Properties:
         P = Page(NOTION_API_KEY)
         P.retrieve_page(page_id=page_id)
-        #return P.result
-        properties_dict = P.result['properties']
+        # return P.result
+        properties_dict = P.result["properties"]
         return self._dict_to_properties(properties_dict)
         
     def update_database_properties(self, page_id:str, properties: Properties):

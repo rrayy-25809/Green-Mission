@@ -4,24 +4,25 @@ from notion_database.properties import Properties
 
 challenge_db = NotionDatabase("20bdc33ef503801e9d94d96404fe33d7")
 
-# print(user_db.get_database_properties())
+# # print(user_db.get_database_properties())
 
-properties = {
-    '챌린지 제목': '요즘 ado 들음',
-    '챌린지 작성자': '20adc33e-f503-8192-86a7-dee7b3c5bf93',
-    '챌린지 설명': '보컬 긁는 거 지림',
-    '참여기한': '2025-06-28 ~ 2025-07-28',
-    '챌린지 아이콘': 'https://i.scdn.co/image/ab67616d0000b273e204aafb5c393179c77c5253'
-}
-result = challenge_db.create_database_page(properties)
-print(result)
+# properties = {
+#     '챌린지 제목': '요즘 ado 들음',
+#     '챌린지 작성자': '20adc33e-f503-8192-86a7-dee7b3c5bf93',
+#     '챌린지 설명': '보컬 긁는 거 지림',
+#     '참여기한': '2025-06-28 ~ 2025-07-28',
+#     '챌린지 아이콘': 'https://i.scdn.co/image/ab67616d0000b273e204aafb5c393179c77c5253'
+# }
+# result = challenge_db.create_database_page(properties)
+# print(result)
 
-# import json
+import json
 
-# user_list = user_db.get_page_ids()
+# user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
+user_list = challenge_db.get_page_ids()
 
-# with open("test.json", "w", encoding="utf-8") as f:
-#     json.dump(user_db.get_page_properties(user_list[0]).result, f, ensure_ascii=False, indent=4)
+with open("test.json", "w", encoding="utf-8") as f:
+    json.dump(challenge_db.get_page_properties(user_list[0]).result, f, ensure_ascii=False, indent=4)
 
 # page = user_db.get_page_properties(user_list[0])
 # today = datetime.now().strftime("%Y-%m-%d") + '+0900'

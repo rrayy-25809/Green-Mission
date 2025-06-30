@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app, render_template, session
+from notion_database.properties import Properties
 from server.db import NotionDatabase
 from dotenv import load_dotenv
-
 import os
 
 # 플라스크 기본 설정
@@ -16,7 +16,7 @@ def get_author_name(author_id):
     try:
         author_page = user_db.get_page_properties(author_id[0]["text"]["content"])
         return author_page.result["유저명"]["title"][0]["text"]["content"]
-    except KeyError:
+    except IndexError:
         return "Green Mission"
 
 def get_challenge_data(page_id):
@@ -25,8 +25,9 @@ def get_challenge_data(page_id):
         "챌린지_ID": page_id,
         "챌린지_제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
         "챌린지_작성자": get_author_name(page.result["챌린지 작성자"]["rich_text"]),
-        "챌린지_아이콘": page.result["챌린지 아이콘"]["files"][0]["external"]["url"],
+        "챌린지_아이콘": page.result["챌린지 아이콘"]["files"][0]["file"]["url"],
         "챌린지_설명": page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
+        "챌린지_응원수" : page.result["응원 수"]["number"],
     }
 
 @bp.route('/challenge/<what_kinda>', methods=['POST'])
@@ -74,3 +75,29 @@ def make_challenge():
 def join_challenge(challenge_id): # 챌린지에 참여하려면 영상 올려야 하잖아 얘들아 싸우자
     user = user_db.get_page_properties(session["page_id"])
     return render_template("join_challenge.html")
+
+@bp.route('/cheer', methods=['POST'])
+def cheer_challenge():
+    challenge_id = request.form["challenge_id"]
+    user = user_db.get_page_properties(session["page_id"])
+    user_properties = Properties() # 업데이트 할 사용자 속성
+    challenge_properties = Properties() # 업데이트 할 챌린지 속성
+    
+    try:
+        cheer_list = user.result["응원한 챌린지"]["rich_text"][0]["text"]["content"].split(",")
+    except KeyError:
+        cheer_list = []
+
+    if challenge_id not in cheer_list:
+        cheer_list.append(challenge_id)
+        user_properties.set_rich_text("응원한 챌린지", ", ".join(cheer_list))
+        cheer_count = challenge_db.get_page_properties(challenge_id).result["응원 수"]
+        print(cheer_count)
+        challenge_properties.set_number("응원 수", cheer_count + 1)
+
+        challenge_db.update_database_properties(challenge_id, challenge_properties)
+        user_db.update_database_properties(session["page_id"], user_properties)
+        current_app.logger.info(f"사용자, {session['page_id']} 가 챌린지 {challenge_id}를 응원했습니다.")
+        return "응원 성공", 200
+    else:
+        return "이미 응원한 챌린지입니다.", 400

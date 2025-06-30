@@ -27,7 +27,7 @@ def mypage():
             '이메일': user_info.result["이메일"]["email"],
             '가입일': f"{join_day.year}년 {join_day.month}월 {join_day.day}일",
             '사용자 역할': user_info.result["사용자 역할"]["select"]["name"]["name"],
-            '프로필 사진': user_info.result["프로필 사진"]["files"][0]["external"]["url"] if user_info.result["프로필 사진"]["files"] else None,
+            '프로필 사진': user_info.result["프로필 사진"]["files"][0]["file"]["url"] if user_info.result["프로필 사진"]["files"] else None,
         }
 
         return jsonify(properties)
