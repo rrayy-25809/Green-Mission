@@ -18,7 +18,7 @@ challenge_db = NotionDatabase("20bdc33ef503801e9d94d96404fe33d7")
 
 import json
 
-# user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
+user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
 user_list = challenge_db.get_page_ids()
 
 with open("test.json", "w", encoding="utf-8") as f:

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="user-name">${data["유저명"]}</div>
             <div class="user-email">${data["이메일"]}</div>
             <div class="user-role">사용자 역할 : ${data["사용자 역할"]}</div>
-            <div class="challenge-count">성공한 챌린지 수 : ${10}</div>
+            <div class="challenge-count">참여한 챌린지 수 : ${data["참여한 챌린지"].length}</div>
             <div class="join-date">${data["가입일"]}에 가입하셨습니다.</div>
         </div>
         <div class="button-section">

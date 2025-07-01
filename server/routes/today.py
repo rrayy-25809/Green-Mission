@@ -16,7 +16,7 @@ def today():
     for i in daylist_db.get_page_ids():
         page = daylist_db.get_page_properties(i)
         # page.result["날짜"]["date"]["start"] 값이 "2025-05-28" 같은 문자열이라고 가정
-        anniversary_date = page.result["날짜"]["date"]["start"]["start"]
+        anniversary_date = page.result["날짜"]["date"]["start"]
         # If anniversary_date_value is a dict, extract the 'start' key; otherwise, use as is
         anniversary_date = datetime.strptime(anniversary_date, "%Y-%m-%d").date()
         today_date = datetime.now().date()

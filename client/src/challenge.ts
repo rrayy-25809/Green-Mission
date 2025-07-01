@@ -16,19 +16,19 @@ function load_challenge(responseText: string, challenge_list: HTMLDivElement) {
                         </div>
                     </div>
                     <div class="challenge-desc">${i["챌린지_설명"]}</div>
-                    <div class="challenge-hashtag">#${'태준함'}</div>
+                    <div class="challenge-hashtag">${i["챌린지_태그"][0]}</div>
                 </div>
                 <div class="challenge-divider d-none d-md-block"></div>
                 <div class="col-auto challenge-side">
-                    <span class="challenge-period">참여기간 : ${'2025.06.02~2025.06.04'}</span>
-                    <span class="challenge-participants">현재 참여 인원 : ${1}명</span>
+                    <span class="challenge-period">참여기간 : ${i["챌린지_시작기한"]+'~'+i["챌린지_종료기한"]}</span>
+                    <span class="challenge-participants">현재 참여 인원 : ${i["챌린지_참여자"].length}명</span>
                     <div class="challenge-side-bottom">
                         <div class="challenge-cheer" data-id="${i["챌린지_ID"]}">
                             <i class="bi bi-fire"></i>
                             <span>${i["챌린지_응원수"]}</span>
                         </div>
                         <i class="challenge-share bi bi-share" data-id="${i["챌린지_ID"]}"></i>
-                        <a type="button" class="btn challenge-join-btn btn-secondary" href="/challenge/${i["챌린지_ID"]}>상세 정보</a>
+                        <a type="button" class="btn challenge-join-btn btn-secondary" href="/challenge/${i["챌린지_ID"]}">상세 정보</a>
                     </div>
                 </div>
             </div>`;
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const url = `${window.location.origin}/challenge/${id}`;
                 
                 window.navigator.clipboard.writeText(url).then(() => {
-                    alert("복사완료");
+                    alert("챌린지 공유 링크를 복사했습니다!");
                 });
             });
         }

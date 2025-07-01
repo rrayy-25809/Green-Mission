@@ -13,8 +13,9 @@ if (make_challenge) {
 
         if (response.ok) {
             alert("챌린지 제작 성공!");
+            window.location.href = "/"; // Redirect to the home page or another page
         } else {
-            alert("챌린지 제작 실패");
+            alert("챌린지 제작 실패"+response.text());
         }
     });
 }

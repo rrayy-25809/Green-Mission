@@ -2,7 +2,11 @@
     "참여기한": {
         "id": "%3CUkq",
         "type": "date",
-        "date": null
+        "date": {
+            "start": "2025-07-02",
+            "end": "2025-07-18",
+            "time_zone": null
+        }
     },
     "태그": {
         "id": "G%5CCT",
@@ -11,7 +15,7 @@
             {
                 "type": "text",
                 "text": {
-                    "content": "#ㅅㄷㄴㅅ\n#test\n#테스트",
+                    "content": "#테스트\n #누구세요\n #쓸게없네",
                     "link": null
                 },
                 "annotations": {
@@ -22,7 +26,7 @@
                     "code": false,
                     "color": "default"
                 },
-                "plain_text": "#ㅅㄷㄴㅅ\n#test\n#테스트",
+                "plain_text": "#테스트\n #누구세요\n #쓸게없네",
                 "href": null
             }
         ]
@@ -34,7 +38,7 @@
             {
                 "type": "text",
                 "text": {
-                    "content": "dumy challenge for test",
+                    "content": "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest",
                     "link": null
                 },
                 "annotations": {
@@ -45,7 +49,7 @@
                     "code": false,
                     "color": "default"
                 },
-                "plain_text": "dumy challenge for test",
+                "plain_text": "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest",
                 "href": null
             }
         ]
@@ -57,7 +61,7 @@
             {
                 "type": "text",
                 "text": {
-                    "content": "20adc33e-f503-8192-86a7-dee7b3c5bf93",
+                    "content": "20cdc33e-f503-81ea-bf68-c3289fba5dd0",
                     "link": null
                 },
                 "annotations": {
@@ -68,7 +72,7 @@
                     "code": false,
                     "color": "default"
                 },
-                "plain_text": "20adc33e-f503-8192-86a7-dee7b3c5bf93",
+                "plain_text": "20cdc33e-f503-81ea-bf68-c3289fba5dd0",
                 "href": null
             }
         ]
@@ -81,7 +85,7 @@
     "생성 일시": {
         "id": "jr%7BZ",
         "type": "created_time",
-        "created_time": "2025-06-20T02:47:00.000Z"
+        "created_time": "2025-07-01T05:10:00.000Z"
     },
     "챌린지 파일 첨부": {
         "id": "mtdI",
@@ -98,11 +102,10 @@
         "type": "files",
         "files": [
             {
-                "name": "unnamed.jpg",
-                "type": "file",
-                "file": {
-                    "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/8161f081-125a-4dfe-9ad7-4f89ec06dd25/6825ad10-eb9c-4ef1-831c-a8add3e94b31/unnamed.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB466UAPZBPIB%2F20250630%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250630T053243Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEL3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIQCelaSQx2qpw8cqZS332YIK7zSMi5NCTD6l%2FW4oqSw9JQIgOBWTEiZ6j%2B%2BfvkNKM6BlNPMwNmW4w9XrC2b2HRo3AugqiAQItv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw2Mzc0MjMxODM4MDUiDI8qEOZ38v7ZxWVoxCrcA9z%2FnWkJchhdDkriDlbZ9rIe6XbQhSidsRL71j1BqUzEbrMr601t7Qya0LLPMCCGgd62AEX6RsWR%2FPaVNmTwRSrp5U%2FhTsVHgr7DwDh0rUKzxqzeYAhPcDCAd7muFkEWUsbgSGDZlNpBCqrM84%2BmJdwRW1q7aU1rUYylUiyFNitVPYU474322W2hzi6ACAprIleCbIKI5M1WIhS2Wd8rUE%2BUDg2%2B%2Bxqe5qWYIKOAFPOx85fLOohOJS4xGShrUW4Wsuc2i%2BvaO%2BdYpoJojWxl1dBD1LXRIDDp3%2BJ8hgdICjIaffdJpxyHY6lFVIoaAHyoG9RWHb21Z1u1zHlXJ%2FNn%2FMCyJx3pAbaL2biOb3SsFS8OcBS1qksQcUvsVx7%2BvpRkQenY7hJ2DWB1oGEyBlkKGnNIuNXFjhdbEChwBNPc5ezVa%2FJq%2BTPzMTF4wSiFLJkWD1q5l%2Fyag94HZOV0Re9kl5W4TP5DHIT%2F2FwJ7%2Ff%2FCHXmlAnEZpEG04O6iImgyED21mDXRWirYN9qeSnJGVAUbwtiGhepUGVnU5bE4l66Tdpo9VI1HvOO%2FJ9cPOkjK0xp6CyMK9Hg8gWw8bJRGNep27wPUF6gjG1C2LM20tkPAqHSGwSAdoknTPIHTdvGMOW7iMMGOqUBplLMv6JbTjTofkA96adKwq8V0M4mPd41w%2BjI4iDhSwB3W9mC4pzdnZziTu5QNgCJRL2uLSjPffqpDjvX9bTk8sTaOesxzDBNL14FtEeBk9diWa6updeoZKuHUCgXWHBghJpT2Xkkuag74GpV0AvLEbAvoL6QFZwX2F%2FA1lfGDcdhmdrsaEQPqzSiwyd25Pye0O0uR0GJ5M6W6ITF4F3eCThF4EMQ&X-Amz-Signature=d600da25478499c8b54cb2d6ee5257afbb9bba96ce9776ba14d355348fc77b04&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-                    "expiry_time": "2025-06-30T06:32:43.205Z"
+                "name": "images?q=tbn:ANd9GcQ_bTfemPHfHmxcNoaLLO3hbxaaMU1npXHsPw&s",
+                "type": "external",
+                "external": {
+                    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_bTfemPHfHmxcNoaLLO3hbxaaMU1npXHsPw&s"
                 }
             }
         ]
@@ -114,7 +117,7 @@
             {
                 "type": "text",
                 "text": {
-                    "content": "awfeawef",
+                    "content": "ㅅㄷㄴㅅ",
                     "link": null
                 },
                 "annotations": {
@@ -125,7 +128,7 @@
                     "code": false,
                     "color": "default"
                 },
-                "plain_text": "awfeawef",
+                "plain_text": "ㅅㄷㄴㅅ",
                 "href": null
             }
         ]

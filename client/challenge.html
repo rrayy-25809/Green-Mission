@@ -23,7 +23,7 @@
             </div>
             <hr class="line">
             <div class="challenge-writing-info">
-                <span class="writing-date">작성 2025.06.22.일 오전 12:54</span>
+                <span class="writing-date">작성 {{챌린지_작성일}}</span>
                 <div class="challenge-writer">
                     <span>{{챌린지_작성자}}</span>
                     <div class="profile-img"></div>
@@ -31,7 +31,7 @@
                 <div class="side-items">
                     <div class="challenge-cheer">
                         <i class="bi bi-fire"></i>
-                        <span>1</span>
+                        <span>{{챌린지_응원수}}</span>
                     </div>
                     <i class="challenge-share bi bi-share"></i>
                 </div>
@@ -42,15 +42,14 @@
             </div>
             <div class="challenge-bottom">
                 <div class="challenge-hashtag">
-                    <span>유저 이름</span>
-                    <span>유저 이름</span>
-                    <span>유저 이름</span>
-                    <span>유저 이름</span>
+                    {% for tag in 챌린지_태그 %}
+                        <span class="hashtag">{{ tag }}</span>
+                    {% endfor %}
                 </div>
                 <div class="vr"></div>
                 <div class="challenge-info">
-                    <span>참여 기한 : 2025.06.22 ~ 2025.06.23</span>
-                    <span>현재 참여 인원 : 36명</span>
+                    <span>참여 기한 : {{챌린지_시작기한}} ~ {{챌린지_종료기한}}</span>
+                    <span>현재 참여 인원 : {{ 챌린지_참여자|length }} 명</span>
                 </div>
             </div>
             <div class="challenge-button">

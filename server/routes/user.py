@@ -20,14 +20,15 @@ def mypage():
     if request.method == "POST":
         page_id = session["page_id"]
         user_info = user_db.get_page_properties(page_id)
-        join_day = datetime.fromisoformat(user_info.result["가입일"]["date"]["start"]['start']).date()
+        join_day = datetime.fromisoformat(user_info.result["가입일"]["date"]["start"]).date()
 
         properties = {
             '유저명': user_info.result["유저명"]["title"][0]["text"]["content"],
             '이메일': user_info.result["이메일"]["email"],
             '가입일': f"{join_day.year}년 {join_day.month}월 {join_day.day}일",
-            '사용자 역할': user_info.result["사용자 역할"]["select"]["name"]["name"],
+            '사용자 역할': user_info.result["사용자 역할"]["select"]["name"],
             '프로필 사진': user_info.result["프로필 사진"]["files"][0]["file"]["url"] if user_info.result["프로필 사진"]["files"] else None,
+            '참여한 챌린지': user_info.result["참여한 챌린지"]["rich_text"][0]["text"]["content"].split(",") if user_info.result["참여한 챌린지"]["rich_text"] else [],
         }
 
         return jsonify(properties)

@@ -21,13 +21,24 @@ def get_author_name(author_id):
 
 def get_challenge_data(page_id):
     page = challenge_db.get_page_properties(page_id)
+
+    try:
+        end_date = page.result["참여기한"]["date"]["end"]
+    except TypeError:
+        end_date = "무기한"
+
     return {
         "챌린지_ID": page_id,
         "챌린지_제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
         "챌린지_작성자": get_author_name(page.result["챌린지 작성자"]["rich_text"]),
-        "챌린지_아이콘": page.result["챌린지 아이콘"]["files"][0]["file"]["url"],
+        "챌린지_아이콘": page.result["챌린지 아이콘"]["files"][0][page.result["챌린지 아이콘"]["files"][0]["type"]]["url"],
         "챌린지_설명": page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
         "챌린지_응원수" : page.result["응원 수"]["number"],
+        "챌린지_시작기한" : page.result["참여기한"]["date"]["start"] if page.result["참여기한"]["date"] else "무기한",
+        "챌린지_종료기한" : end_date,
+        "챌린지_작성일" : page.result["생성 일시"]["created_time"],
+        "챌린지_참여자" : page.result["현재 참여 인원"]["rich_text"][0]["text"]["content"].split(",") if page.result["현재 참여 인원"]["rich_text"] else [],
+        "챌린지_태그" : page.result["태그"]["rich_text"][0]["text"]["content"].split("\n") if page.result["태그"]["rich_text"] else [],
     }
 
 @bp.route('/challenge/<what_kinda>', methods=['POST'])
@@ -39,7 +50,7 @@ def post_challenge(what_kinda):
         user_properties = user_db.get_page_properties(session["page_id"])
         try:
             challenge_list_str = user_properties.result["참여한 챌린지"]["rich_text"][0]["text"]["content"]
-        except KeyError:
+        except IndexError:
             return "참여한 챌린지가 없습니다.", 200
 
         challenge_list = challenge_list_str.split(",")
@@ -58,18 +69,24 @@ def get_challenge(what_kinda):
 @bp.route('/make_challenge', methods=['GET', 'POST'])
 def make_challenge():
     if request.method == "POST":
+        if request.form.get("tag") is None:
+            return "태그가 없습니다.", 400
+
         properties = {
             "챌린지 제목" : request.form.get("title"),
             "챌린지 작성자" : session["page_id"],
             "챌린지 설명" : request.form.get("description"),
-            "date" : f"{request.form.get("start_day")} ~ {request.form.get("end_day")}",
+            "참여기한" : f"{request.form.get("start_day")} ~ {request.form.get("end_day")}",
             "챌린지 아이콘" : request.form.get("img_url"),
+            "태그" : request.form.get("tag").replace(",", "\n"),
+            "응원 수" : 0,
         }
 
         challenge_db.create_database_page(properties)
         current_app.logger.info(f"사용자, {properties["챌린지 작성자"]} 가 새 챌린지{properties["챌린지 제목"]}를 만들었습니다.")
-        return "제작중", 500
-    return render_template("make_challenge.html")
+        return "제작완료", 200
+    else: #GET
+        return render_template("make_challenge.html")
 
 @bp.route('/join/<challenge_id>', methods=['GET'])
 def join_challenge(challenge_id): # 챌린지에 참여하려면 영상 올려야 하잖아 얘들아 싸우자
@@ -85,18 +102,19 @@ def cheer_challenge():
     
     try:
         cheer_list = user.result["응원한 챌린지"]["rich_text"][0]["text"]["content"].split(",")
-    except KeyError:
+    except IndexError:
         cheer_list = []
 
     if challenge_id not in cheer_list:
-        cheer_list.append(challenge_id)
+        cheer_list.append(challenge_id) # 응원한 챌린지 목록에 추가
         user_properties.set_rich_text("응원한 챌린지", ", ".join(cheer_list))
-        cheer_count = challenge_db.get_page_properties(challenge_id).result["응원 수"]
-        print(cheer_count)
-        challenge_properties.set_number("응원 수", cheer_count + 1)
+
+        cheer_count = challenge_db.get_page_properties(challenge_id).result["응원 수"]["number"]
+        challenge_properties.set_number("응원 수", cheer_count + 1) # 챌린지의 응원 수 증가
 
         challenge_db.update_database_properties(challenge_id, challenge_properties)
         user_db.update_database_properties(session["page_id"], user_properties)
+
         current_app.logger.info(f"사용자, {session['page_id']} 가 챌린지 {challenge_id}를 응원했습니다.")
         return "응원 성공", 200
     else:
