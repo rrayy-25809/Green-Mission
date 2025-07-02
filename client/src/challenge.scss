@@ -318,15 +318,14 @@ $color-divider: rgba(0,0,0,0.5);
 // 상세페이지
 #challenge-detail {
     // 카드와 공통되는 부분은 %card-box에서 상속
-    border-radius: 30px;
     width: 78%;
     margin-left: 11%;
     padding: 48px 56px 40px 56px;
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    background: #FCF6F5;
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    box-shadow: none;
 
     .challenge-title {
         display: flex;

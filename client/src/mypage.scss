@@ -220,3 +220,27 @@
         color: #ffffff;
     }
 }
+
+.goal-card {
+    width: 400px;
+    height: 250px;
+    padding: 20px 45px;
+    background-image: url('images/goal_card.png'); /* 이미지 파일 경로 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: sans-serif;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.goal-title {
+    font-weight: bold;
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.goal-content {
+    font-size: 24px;
+    margin-top: 10px;
+}
