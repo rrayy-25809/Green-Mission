@@ -42,41 +42,40 @@ document.addEventListener('DOMContentLoaded', async () => {
     const challenge_list = document.getElementsByClassName("challenge-list")[0] as HTMLDivElement;
     if (!challenge_list) { // 챌린지 기능이 필요 없을 경우 예외 처리(그럴리는 없겠지만 혹시 모르니까)
         console.error("Challenge list element not found.");
-        return;
-    }
-
-    const loading = `<div id="loading-overlay">
-        <div class="spinner-border text-secondary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>`; // 로딩 표시를 위한 HTML 코드
-    challenge_list.innerHTML = loading; //innerHTML를 사용하면 기존의 내용을 모두 지우고 새로운 내용을 삽입
-
-    let path = "";
-    if (window.location.pathname == "/mypage") {
-        path = "/user";
-    } else if (window.location.pathname.startsWith("/challenge")) {
-        path = window.location.pathname.replace("/challenge", "");
-    } else{
-        path = "/s"
-    }
-
-    const response = await fetch(`/challenge${path}`, {
-        method: "POST",
-    });
-
-    if (response.ok) {
-        const responseText = await response.text();
-        if (responseText == "참여한 챌린지가 없습니다.") {
-            challenge_list.innerHTML = `<h2>참여한 챌린지가 없습니다.</h2>
-            <a type="button" class="btn btn-primary btn-lg" href="/#challenges">참여 가능한 챌린지 확인하기</a>`;
-            return;
-        }
-        challenge_list.innerHTML = ''; // 로딩 표시를 제거하고 챌린지 목록을 비웁니다.
-        load_challenge(responseText, challenge_list); // 챌린지 목록을 로드합니다.
     } else {
-        const responseText = await response.text();
-        console.error("Error fetching today's challenge:", responseText);
+        const loading = `<div id="loading-overlay">
+            <div class="spinner-border text-secondary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>`; // 로딩 표시를 위한 HTML 코드
+        challenge_list.innerHTML = loading; //innerHTML를 사용하면 기존의 내용을 모두 지우고 새로운 내용을 삽입
+
+        let path = "";
+        if (window.location.pathname == "/mypage") {
+            path = "/user";
+        } else if (window.location.pathname.startsWith("/challenge")) {
+            path = window.location.pathname.replace("/challenge", "");
+        } else{
+            path = "/s"
+        }
+
+        const response = await fetch(`/challenge${path}`, {
+            method: "POST",
+        });
+
+        if (response.ok) {
+            const responseText = await response.text();
+            if (responseText == "참여한 챌린지가 없습니다.") {
+                challenge_list.innerHTML = `<h2>참여한 챌린지가 없습니다.</h2>
+                <a type="button" class="btn btn-primary btn-lg" href="/#challenges">참여 가능한 챌린지 확인하기</a>`;
+                return;
+            }
+            challenge_list.innerHTML = ''; // 로딩 표시를 제거하고 챌린지 목록을 비웁니다.
+            load_challenge(responseText, challenge_list); // 챌린지 목록을 로드합니다.
+        } else {
+            const responseText = await response.text();
+            console.error("Error fetching today's challenge:", responseText);
+        }
     }
 
     // 챌린지 공유 버튼 이벤트 리스너 추가
