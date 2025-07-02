@@ -24,7 +24,7 @@
         <div id="mypage-info" class="mypage-content">
             <div class="mypage-info-container">
                 <div class="profile-section">
-                    <img class="profile-image" src="{{프로필_사진}}" alt="클릭하여 프로필 사진 변경"></img>
+                    <img class="profile-image" src="{{프로필_사진}}" alt="클릭하여 프로필 사진 변경">
                     <input type="file" id="selectedFile" style="display: none;" />
                     <input class="btn btn-light" type="button" value="파일변경" onclick="document.getElementById('selectedFile').click();" />
                 </div>
@@ -55,20 +55,22 @@
                 <div class="goal-title">달성할 목표</div>
                 <div class="goal-content">${"그린미션 가입하기"}</div>
             </div>
-            <svg class="container goal-progress" width="934" height="1165" viewBox="0 0 934 1165" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line id="line1" x1="73.6945" y1="20.5984" x2="609.695" y2="175.598" stroke="#828282" stroke-width="5"/>
-                <line id="line2" x1="610.753" y1="176.218" x2="912.753" y2="473.218" stroke="#828282" stroke-width="5"/>
-                <line id="line3" x1="300.399" y1="623.573" x2="910.399" y2="472.573" stroke="#828282" stroke-width="5"/>
-                <line id="line4" x1="301.662" y1="626.75" x2="21.6615" y2="873.75" stroke="#999999" stroke-width="2"/>
-                <line id="line5" x1="22.4717" y1="873.118" x2="523.472" y2="1141.12" stroke="#999999" stroke-width="2"/>
+            <div class="container d-flex justify-content-center">
+                <svg class="goal-progress" width="934" height="1165" viewBox="0 0 934 1165" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line id="line1" x1="73.6945" y1="20.5984" x2="609.695" y2="175.598" stroke="#828282" stroke-width="5"/>
+                    <line id="line2" x1="610.753" y1="176.218" x2="912.753" y2="473.218" stroke="#828282" stroke-width="5"/>
+                    <line id="line3" x1="300.399" y1="623.573" x2="910.399" y2="472.573" stroke="#828282" stroke-width="5"/>
+                    <line id="line4" x1="301.662" y1="626.75" x2="21.6615" y2="873.75" stroke="#999999" stroke-width="2"/>
+                    <line id="line5" x1="22.4717" y1="873.118" x2="523.472" y2="1141.12" stroke="#999999" stroke-width="2"/>
 
-                <circle id="circle1" cx="73" cy="23" r="20" fill="#4DFF00" stroke="#828282" stroke-width="6"/>
-                <circle id="circle2" cx="609" cy="178" r="20" fill="#4DFF00" stroke="#828282" stroke-width="6"/>
-                <circle id="circle3" cx="911" cy="475" r="20" fill="#4DFF00" stroke="#828282" stroke-width="6"/>
-                <circle id="circle4" cx="301" cy="626" r="20" fill="#4DFF00" stroke="#999999" stroke-width="6"/>
-                <circle id="circle5" cx="23" cy="872" r="20" fill="#E1E1E1" stroke="#ADADAD" stroke-width="6"/>
-                <circle id="circle6" cx="523" cy="1142" r="20" fill="#E1E1E1" stroke="#ADADAD" stroke-width="6"/>
-            </svg>
+                    <circle id="circle1" cx="73" cy="23" r="20" fill="#4DFF00" stroke="#828282" stroke-width="6"/>
+                    <circle id="circle2" cx="609" cy="178" r="20" fill="#4DFF00" stroke="#828282" stroke-width="6"/>
+                    <circle id="circle3" cx="911" cy="475" r="20" fill="#4DFF00" stroke="#828282" stroke-width="6"/>
+                    <circle id="circle4" cx="301" cy="626" r="20" fill="#4DFF00" stroke="#999999" stroke-width="6"/>
+                    <circle id="circle5" cx="23" cy="872" r="20" fill="#E1E1E1" stroke="#ADADAD" stroke-width="6"/>
+                    <circle id="circle6" cx="523" cy="1142" r="20" fill="#E1E1E1" stroke="#ADADAD" stroke-width="6"/>
+                </svg>
+            </div>
         </div>
         <div class="footer"></div>
         <script type="module" src="src/main.ts"></script>

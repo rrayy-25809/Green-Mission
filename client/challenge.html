@@ -52,10 +52,11 @@
                     <span>현재 참여 인원 : {{ 챌린지_참여자|length }} 명</span>
                 </div>
             </div>
-            <div class="challenge-button">
-                <a class="btn btn-mypage-info" href="/join/{{챌린지_ID}}">참여 요청 보내기</a>
-            </div>
             <hr class="line">
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="challenge_input">
+                <label class="input-group-text" for="challenge_input">챌린지 참여하기</label>
+            </div>
             <div class="row row-cols-1 row-cols-md-3 g-4 challenge-participants">
                 {% for i in 챌린지_참여자 %}
                     <div class="card col">
@@ -70,5 +71,6 @@
         <div class="footer"></div>
         <script type="module" src="src/main.ts"></script>
         <script type="module" src="src/challenge.ts"></script>
+        <script type="module" src="src/join_challenge.ts"></script>
     </body>
 </html>

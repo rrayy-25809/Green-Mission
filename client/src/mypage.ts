@@ -21,12 +21,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     const footprint = document.getElementById('my-footprint') as HTMLElement;
+    const card = document.querySelector('.goal-card') as HTMLElement;
+    const circles = footprint.querySelectorAll('circle');
 
-    footprint.addEventListener('mousemove', (event) => {
-        // Code to execute when the mouse moves over 'myElement'
-        const card = document.querySelector('.goal-card') as HTMLElement;
-        card.style.left = `${event.clientX - 50}px`;
-        card.style.top = `${event.clientY - 50}px`;
-        console.log(`Mouse moved to: ${event.clientX}, ${event.clientY}`);
+    circles.forEach((circle, index) => {
+        circle.addEventListener('mouseenter', () => {
+            card.style.display = 'block'; // 클릭 시 카드 표시
+            console.log(circle.getBoundingClientRect());
+            card.style.top = `${circle.getBoundingClientRect().top + window.scrollY - 250}px`;
+            card.style.left = `${circle.getBoundingClientRect().left + window.scrollX -185}px`;
+
+            const goalText = document.getElementsByClassName('goal-content')[0] as HTMLElement;
+            goalText.innerText = `목표 ${index + 1}의 내용입니다. 여기에 목표에 대한 자세한 설명을 추가할 수 있습니다.`;
+        });
+
+        circle.addEventListener('mouseleave', () => {
+            card.style.display = 'none'; // 마우스가 떠나면 카드 숨김
+        });
     });
 });

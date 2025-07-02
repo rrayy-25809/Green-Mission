@@ -232,6 +232,8 @@
     font-family: sans-serif;
     box-sizing: border-box;
     position: absolute;
+    display: none; /* 기본적으로 숨김 */
+    z-index: 1000; /* 다른 요소 위에 표시되도록 설정 */
 }
 
 .goal-title {

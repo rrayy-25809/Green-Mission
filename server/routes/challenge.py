@@ -89,7 +89,7 @@ def make_challenge():
             "챌린지 설명" : request.form.get("description"),
             "참여기한" : f"{request.form.get("start_day")} ~ {request.form.get("end_day")}",
             "챌린지 아이콘" : request.form.get("img_url"),
-            "태그" : request.form.get("tag").replace(",", "\n"),
+            "태그" : request.form.get("tag").replace(",", "\n"), # type: ignore
             "응원 수" : 0,
         }
 
@@ -99,11 +99,11 @@ def make_challenge():
     else: #GET
         return render_template("make_challenge.html")
 
-@bp.route('/join/<challenge_id>', methods=['POST'])
-def join_challenge(challenge_id): # 챌린지에 참여하려면 영상 올려야 하잖아 얘들아 싸우자
+@bp.route('/join/<challenge_id>', methods=['POST']) # type: ignore
+def join_challenge(challenge_id):
     user = user_db.get_page_properties(session["page_id"])
     challenge = challenge_db.get_page_properties(challenge_id)
-    img = request.files.get("img")
+    img = request.files.get("image")
     url = request.form.get('url')
     challenge_properties = Properties()
     user_properties = Properties()
@@ -116,12 +116,18 @@ def join_challenge(challenge_id): # 챌린지에 참여하려면 영상 올려�
         path = os.path.join(current_app.instance_path, 'uploads', f'challenge_{session["page_id"]}.jpg')
         img.save(path) # 비디오 저장(이미지로 할까 비디오로 할까)
     else:
-        return "프로필 사진이 없습니다.", 400
+        current_app.logger.error(f"사용자, {session['page_id']} 가 챌린지 {challenge_id}에 참여하려고 했으나 사진을 업로드하지 않았습니다.")
+        return "챌린지 사진이 없습니다.", 400
     
     join_challenge_list.append(challenge_id)
     user_properties.set_rich_text("참여한 챌린지", ",".join(join_challenge_list))
     challenge_properties.set_rich_text("현재 참여 인원", ",".join(join_user_list + [session["page_id"]]))
     challenge_properties.set_files("챌린지 파일 첨부", join_img_list + [f"{url}/uploads/challenge_{session['page_id']}.jpg"])
+
+    challenge_db.update_database_properties(challenge_id, challenge_properties)
+    user_db.update_database_properties(session["page_id"], user_properties)
+    current_app.logger.info(f"사용자, {session['page_id']} 가 챌린지 {challenge_id}에 참여했습니다.")
+    return "챌린지 참여 성공", 200
 
 @bp.route('/cheer', methods=['POST'])
 def cheer_challenge():
