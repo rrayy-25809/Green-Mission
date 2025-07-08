@@ -54,7 +54,7 @@ def signup():
             properties['전화번호'] = request.form["phone"]
 
         result = user_db.create_database_page(properties)
-        current_app.logger.info(f"회원가입 성공: {result["id"]}")
+        current_app.logger.info(f"회원가입 성공: {result['id']}")
         
         return redirect("/login")
     

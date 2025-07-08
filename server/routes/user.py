@@ -30,7 +30,7 @@ def user_info(page_id:str) -> dict:
         '이메일': user_info.result["이메일"]["email"],
         '가입일': f"{join_day.year}년 {join_day.month}월 {join_day.day}일",
         '사용자_역할': user_info.result["사용자 역할"]["select"]["name"],
-        '프로필_사진': user_info.result["프로필 사진"]["files"][0]["file"]["url"] if user_info.result["프로필 사진"]["files"] else None,
+        '프로필_사진': user_info.result["프로필 사진"]["files"][0][user_info.result["프로필 사진"]["files"][0]["type"]]["url"] if user_info.result["프로필 사진"]["files"] else None,
         '참여한_챌린지': user_info.result["참여한 챌린지"]["rich_text"][0]["text"]["content"].split(",") if user_info.result["참여한 챌린지"]["rich_text"] else [],
         '응원_수': len(user_info.result["응원한 챌린지"]["rich_text"][0]["text"]["content"].split(",")) if user_info.result["응원한 챌린지"]["rich_text"] else 0,
         '챌린지_작성수' : challenge_make_count(page_id),
@@ -77,7 +77,7 @@ def change_profile():
     else:
         return "프로필 사진이 없습니다.", 400
 
-    properties.set_files("프로필 사진",[f"{url}/uploads/profile_{session["page_id"]}.jpg"])
+    properties.set_files("프로필 사진",[f"{url}/uploads/profile_{session['page_id']}.jpg"])
     user_db.update_database_properties(page_id, properties)
     current_app.logger.info(f"사용자, {page_id} 가 프로필 사진을 변경했습니다.")
     

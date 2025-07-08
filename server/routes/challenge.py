@@ -80,22 +80,28 @@ def get_challenge(what_kinda):
 @bp.route('/make_challenge', methods=['GET', 'POST'])
 def make_challenge():
     if request.method == "POST":
-        if request.form.get("tag") is None:
-            return "태그가 없습니다.", 400
+        if request.form.get("tag") is None or not "," in request.form.get("tag"): # type: ignore
+            return "챌린지 제작에 실패했습니다. 태그가 없거나 쉼표로 구분되어 있지 않습니다.", 400
+        try:
+            properties = {
+                "챌린지 제목" : request.form.get("title"),
+                "챌린지 작성자" : session["page_id"],
+                "챌린지 설명" : request.form.get("description"),
+                "참여기한" : f"{request.form.get('start_day')} ~ {request.form.get('end_day')}",
+                "챌린지 아이콘" : request.form.get("img_url"),
+                "태그" : request.form.get("tag").replace(",", "\n"), # type: ignore
+                "응원 수" : 0,
+            }
 
-        properties = {
-            "챌린지 제목" : request.form.get("title"),
-            "챌린지 작성자" : session["page_id"],
-            "챌린지 설명" : request.form.get("description"),
-            "참여기한" : f"{request.form.get("start_day")} ~ {request.form.get("end_day")}",
-            "챌린지 아이콘" : request.form.get("img_url"),
-            "태그" : request.form.get("tag").replace(",", "\n"), # type: ignore
-            "응원 수" : 0,
-        }
-
-        challenge_db.create_database_page(properties)
-        current_app.logger.info(f"사용자, {properties["챌린지 작성자"]} 가 새 챌린지{properties["챌린지 제목"]}를 만들었습니다.")
-        return "제작완료", 200
+            challenge_db.create_database_page(properties)
+            current_app.logger.info(f"사용자, {properties['챌린지 작성자']} 가 새 챌린지{properties['챌린지 제목']}를 만들었습니다.")
+            return "제작완료", 200
+        except ValueError:
+            current_app.logger.error(f"사용자, {session['page_id']} 가 챌린지 제작에 실패했습니다. 필수 정보가 누락되었을 수 있습니다.")
+            return "챌린지 제작에 실패했습니다. 필수 정보를 확인해주세요.", 400
+        except Exception as e:
+            current_app.logger.error(f"사용자, {session['page_id']} 가 챌린지 제작에 실패했습니다. 오류: {e}")
+            return "챌린지 제작에 실패했습니다. 다시 시도해주세요.", 500
     else: #GET
         return render_template("make_challenge.html")
 
