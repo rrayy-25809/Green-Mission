@@ -1,3 +1,14 @@
+function limitStringLength(inputString: string, max:number): string {
+  if (inputString.length > max) {
+    // 문자열이 최대 길이를 초과하면 최대 길이까지 자름
+    return inputString.substring(0, max)+"...";
+    // 또는 다른 조치를 취할 수 있음 (예: 경고 메시지 표시, 로깅 등)
+  } else {
+    // 최대 길이를 초과하지 않으면 그대로 반환
+    return inputString;
+  }
+}
+
 function load_challenge(responseText: string, challenge_list: HTMLDivElement) {
     const data = JSON.parse(responseText);
     for (let index = 0; index < data.length; index++) {
@@ -15,7 +26,7 @@ function load_challenge(responseText: string, challenge_list: HTMLDivElement) {
                             <span>${i["챌린지_작성자"]}</span>
                         </div>
                     </div>
-                    <div class="challenge-desc">${i["챌린지_설명"]}</div>
+                    <div class="challenge-desc">${limitStringLength(i["챌린지_설명"], 100)}</div>
                     <div class="challenge-hashtag">${i["챌린지_태그"][0]}</div>
                 </div>
                 <div class="challenge-divider d-none d-md-block"></div>

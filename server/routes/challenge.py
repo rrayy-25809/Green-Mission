@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, current_app, render_template, ses
 from notion_database.properties import Properties
 from server.db import NotionDatabase
 from dotenv import load_dotenv
+import html
 import os
 
 # 플라스크 기본 설정
@@ -16,6 +17,14 @@ def get_author_name(author_id):
     try:
         author_page = user_db.get_page_properties(author_id[0]["text"]["content"])
         return author_page.result["유저명"]["title"][0]["text"]["content"]
+    except IndexError:
+        return "Green Mission"
+    
+def get_author_profile(author_id):
+    try:
+        author_page = user_db.get_page_properties(author_id[0]["text"]["content"])
+        profile_url = author_page.result["프로필 사진"]["files"][0][author_page.result["프로필 사진"]["files"][0]["type"]]["url"] if author_page.result["프로필 사진"]["files"] else None
+        return profile_url
     except IndexError:
         return "Green Mission"
 
@@ -42,8 +51,9 @@ def get_challenge_data(page_id):
         "챌린지_ID": page_id,
         "챌린지_제목": page.result["챌린지 제목"]['title'][0]['text']['content'],
         "챌린지_작성자": get_author_name(page.result["챌린지 작성자"]["rich_text"]),
+        "챌린지_작성자_프로필": get_author_profile(page.result["챌린지 작성자"]["rich_text"]),
         "챌린지_아이콘": page.result["챌린지 아이콘"]["files"][0][page.result["챌린지 아이콘"]["files"][0]["type"]]["url"],
-        "챌린지_설명": page.result["챌린지 설명"]["rich_text"][0]["text"]["content"],
+        "챌린지_설명": html.escape(page.result["챌린지 설명"]["rich_text"][0]["text"]["content"]).replace('\n', '<br>'),
         "챌린지_응원수" : page.result["응원 수"]["number"],
         "챌린지_시작기한" : page.result["참여기한"]["date"]["start"] if page.result["참여기한"]["date"] else "무기한",
         "챌린지_종료기한" : end_date,

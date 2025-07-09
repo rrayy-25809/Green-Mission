@@ -16,13 +16,15 @@ challenge_db = NotionDatabase("20bdc33ef503801e9d94d96404fe33d7")
 # result = challenge_db.create_database_page(properties)
 # print(result)
 
-import json
+# import json
 
-user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
-user_list = challenge_db.get_page_ids()
+# user_db = NotionDatabase("1f8dc33ef503801e81b0df64081aba0e")
+# user_list = challenge_db.get_page_ids()
 
-with open("test.json", "w", encoding="utf-8") as f:
-    json.dump(challenge_db.get_page_properties(user_list[0]).result, f, ensure_ascii=False, indent=4)
+# with open("test.json", "w", encoding="utf-8") as f:
+#     json.dump(challenge_db.get_page_properties(user_list[0]).result, f, ensure_ascii=False, indent=4)
+
+print(len("음료수를 먹고나서 버릴 때 귀찮아서 라벨을 떼지 않고 버린 적 많으시죠? 우리 모두 조금 귀찮더라도 라벨을 떼서 분리수거 해보도록 해요. 우리 한 명 한 명의 작은 노력이 커다란 나비효과를 불러일으킨답니다. 페트병을 헹구고 라벨을 제"))
 
 # page = user_db.get_page_properties(user_list[0])
 # today = datetime.now().strftime("%Y-%m-%d") + '+0900'
