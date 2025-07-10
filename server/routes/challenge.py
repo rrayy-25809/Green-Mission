@@ -159,6 +159,8 @@ def join_challenge(challenge_id):
 @bp.route('/cheer', methods=['POST'])
 def cheer_challenge():
     challenge_id = request.form["challenge_id"]
+    if "page_id" not in session:
+        return "먼저 로그인 해주세요.", 403
     user = user_db.get_page_properties(session["page_id"])
     user_properties = Properties() # 업데이트 할 사용자 속성
     challenge_properties = Properties() # 업데이트 할 챌린지 속성

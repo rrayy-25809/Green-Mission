@@ -95,10 +95,27 @@ document.addEventListener('DOMContentLoaded', async () => {
             element.addEventListener("click", () => {
                 const id = element.getAttribute("data-id");
                 const url = `${window.location.origin}/challenge/${id}`;
-                
-                window.navigator.clipboard.writeText(url).then(() => {
-                    alert("챌린지 공유 링크를 복사했습니다!");
-                });
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url).then(() => {
+                        alert("챌린지 공유 링크를 복사했습니다!");
+                    }).catch(() => {
+                        alert("클립보드 복사에 실패했습니다.");
+                    });
+                } else {
+                    // HTTP 환경 등에서 fallback
+                    const textarea = document.createElement("textarea");
+                    textarea.value = url;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        alert("챌린지 공유 링크를 복사했습니다!");
+                    } catch (err) {
+                        alert("클립보드 복사에 실패했습니다.");
+                    }
+                    document.body.removeChild(textarea);
+                }
             });
         }
     });
