@@ -91,14 +91,25 @@ def get_challenge(what_kinda):
 def make_challenge():
     if request.method == "POST":
         if request.form.get("tag") is None or not "," in request.form.get("tag"): # type: ignore
+            current_app.logger.error(f"사용자, {session['page_id']} 가 챌린지를 제작하려고 했으나 태그가 없거나 쉼표로 구분되어 있지 않습니다.")
             return "챌린지 제작에 실패했습니다. 태그가 없거나 쉼표로 구분되어 있지 않습니다.", 400
         try:
+            print(request.files)
+            img = request.files.get("img")
+            url = request.form.get('url')
+            if img:
+                path = os.path.join(current_app.instance_path, 'uploads', f'icon_{session["page_id"]}.jpg')
+                img.save(path) # 비디오 저장(이미지로 할까 비디오로 할까)
+            else:
+                current_app.logger.error(f"사용자, {session['page_id']} 가 챌린지를 제작하려고 했으나 아이콘을 업로드하지 않았습니다.")
+                return "챌린지 제작에 실패했습니다. 챌린지 아이콘이 없습니다.", 400
+    
             properties = {
                 "챌린지 제목" : request.form.get("title"),
                 "챌린지 작성자" : session["page_id"],
                 "챌린지 설명" : request.form.get("description"),
                 "참여기한" : f"{request.form.get('start_day')} ~ {request.form.get('end_day')}",
-                "챌린지 아이콘" : request.form.get("img_url"),
+                "챌린지 아이콘" : f"{url}/uploads/icon_{session['page_id']}.jpg",
                 "태그" : request.form.get("tag").replace(",", "\n"), # type: ignore
                 "응원 수" : 0,
             }

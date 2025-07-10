@@ -4,7 +4,7 @@ if (make_challenge) {
     make_challenge.addEventListener("submit", async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
         const formData = new FormData(make_challenge as HTMLFormElement);
-        console.log(formData);
+        formData.append('url', window.location.href.replace("/make_challenge",""));
 
         const response = await fetch("/make_challenge", {
             method: "POST",
