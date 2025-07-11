@@ -124,7 +124,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     Array.from(document.getElementsByClassName("challenge-cheer")).forEach((element) => {
         if (element) {
             element.addEventListener("click", async () => {
-                const id = element.getAttribute("data-id");
+                const i = element.querySelector("i") as HTMLElement;
+                const id = i.getAttribute("data-id");
                 const formData = new FormData();
                 formData.append("challenge_id", id || "");
 

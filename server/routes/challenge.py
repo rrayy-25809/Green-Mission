@@ -26,7 +26,7 @@ def get_author_profile(author_id):
         profile_url = author_page.result["프로필 사진"]["files"][0][author_page.result["프로필 사진"]["files"][0]["type"]]["url"] if author_page.result["프로필 사진"]["files"] else None
         return profile_url
     except IndexError:
-        return "Green Mission"
+        return "https://blog.kakaocdn.net/dna/bfZZQd/btrua3HciZ9/AAAAAAAAAAAAAAAAAAAAAFQMJkBr5W9Jsfmwj46M-CKXp7KDfMoYD6Bb7uc29T6x/%EC%B9%B4%ED%86%A1%20%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84%20%EC%82%AC%EC%A7%84(%EC%97%B0%EC%B4%88%EB%A1%9Dver).jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1753973999&allow_ip=&allow_referer=&signature=v0HPR0mRWcSXeBu1%2FU3iCJ1IeVo%3D&attach=1&knm=img.jpg"
 
 def get_challenge_data(page_id):
     page = challenge_db.get_page_properties(page_id)
@@ -83,6 +83,7 @@ def post_challenge(what_kinda):
 
 @bp.route('/challenge/<what_kinda>', methods=['GET'])
 def get_challenge(what_kinda):
+    current_app.logger.info(f"챌린지 {what_kinda}에 접속")
     challenge = get_challenge_data(what_kinda)
     
     return render_template("challenge.html",**challenge)
@@ -94,7 +95,6 @@ def make_challenge():
             current_app.logger.error(f"사용자, {session['page_id']} 가 챌린지를 제작하려고 했으나 태그가 없거나 쉼표로 구분되어 있지 않습니다.")
             return "챌린지 제작에 실패했습니다. 태그가 없거나 쉼표로 구분되어 있지 않습니다.", 400
         try:
-            print(request.files)
             img = request.files.get("img")
             url = request.form.get('url')
             if img:
@@ -124,6 +124,8 @@ def make_challenge():
             current_app.logger.error(f"사용자, {session['page_id']} 가 챌린지 제작에 실패했습니다. 오류: {e}")
             return "챌린지 제작에 실패했습니다. 다시 시도해주세요.", 500
     else: #GET
+        if "page_id" not in session:
+            return "먼저 로그인 해주세요.", 403
         return render_template("make_challenge.html")
 
 @bp.route('/join/<challenge_id>', methods=['POST']) # type: ignore
@@ -175,6 +177,8 @@ def cheer_challenge():
         user_properties.set_rich_text("응원한 챌린지", ", ".join(cheer_list))
 
         cheer_count = challenge_db.get_page_properties(challenge_id).result["응원 수"]["number"]
+        if cheer_count == None:
+            cheer_count = 0
         challenge_properties.set_number("응원 수", cheer_count + 1) # 챌린지의 응원 수 증가
 
         challenge_db.update_database_properties(challenge_id, challenge_properties)
