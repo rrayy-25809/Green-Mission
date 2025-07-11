@@ -24,6 +24,10 @@ flask.register_blueprint(challenge_bp)
 def main():
     return render_template("index.html")
 
-@flask.route('/uploads/<filename>')
+@flask.route('/uploads/<filename>') # 파일 공유용 엔드포인트
 def uploaded_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
+
+@flask.route("/about") # 설명 페이지 라우트
+def about():
+    return render_template("about.html")
