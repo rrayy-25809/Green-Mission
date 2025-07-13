@@ -39,9 +39,10 @@ def user_info(page_id:str) -> dict:
     return properties
 
 def challenge_make_count(page_id):
+    count = 0
+    
     for i in challenge_db.get_page_ids():
         challenge = challenge_db.get_page_properties(i)
-        count = 0
         try:
             if challenge.result["챌린지 작성자"]["rich_text"][0]["text"]["content"] == page_id:
                 count += 1
