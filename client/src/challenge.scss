@@ -108,13 +108,16 @@ $color-divider: rgba(0,0,0,0.5);
 // 카드 스타일
 .challenge-item {
     width: 90.27%;
-    height: 300px;
     padding: 25px;
     gap: 20px;
     align-items: flex-start;
     display: flex;
     margin-bottom: 15px;
     margin-top: 15px;
+
+    @media (max-width: 1040px) {
+        flex-direction: column;
+    }
 
     .challenge-img-box {
         background: #D9D9D9;
@@ -123,6 +126,10 @@ $color-divider: rgba(0,0,0,0.5);
 
         img {
             @extend %challenge-image;
+            @media (max-width: 1040px) {
+                width: 320px;
+                height: 320px;
+            }
         }
     }
 
@@ -390,6 +397,10 @@ $color-divider: rgba(0,0,0,0.5);
         .challenge-desc {
             @extend %desc-detail;
             width: 542px;
+
+            @media (max-width: 1040px) {
+                display: none;
+            }
         }
     }
 
