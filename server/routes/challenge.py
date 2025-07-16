@@ -151,7 +151,8 @@ def join_challenge(challenge_id):
     join_challenge_list.append(challenge_id)
     user_properties.set_rich_text("참여한 챌린지", ",".join(join_challenge_list))
     challenge_properties.set_rich_text("현재 참여 인원", ",".join(join_user_list + [session["page_id"]]))
-    challenge_properties.set_files("챌린지 파일 첨부", join_img_list + [f"{url}/uploads/challenge_{session['page_id']}.jpg"])
+    join_img_list.append({"type": "external", "name": f"{challenge_id}_{session['page_id']}.jpg", "external": {"url": f"{url}/uploads/{challenge_id}_{session['page_id']}.jpg"}})
+    challenge_properties.result.update({"챌린지 파일 첨부": {"files": join_img_list}})
 
     challenge_db.update_database_properties(challenge_id, challenge_properties)
     user_db.update_database_properties(session["page_id"], user_properties)
