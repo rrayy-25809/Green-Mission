@@ -142,7 +142,7 @@ def join_challenge(challenge_id):
     join_img_list = challenge.result["챌린지 파일 첨부"]["files"] if challenge.result["챌린지 파일 첨부"]["files"] else []
 
     if img:
-        path = os.path.join(current_app.instance_path, 'uploads', f'challenge_{session["page_id"]}.jpg')
+        path = os.path.join(current_app.instance_path, 'uploads', f'{challenge_id}_{session["page_id"]}.jpg')
         img.save(path) # 비디오 저장(이미지로 할까 비디오로 할까)
     else:
         current_app.logger.error(f"사용자, {session['page_id']} 가 챌린지 {challenge_id}에 참여하려고 했으나 사진을 업로드하지 않았습니다.")
